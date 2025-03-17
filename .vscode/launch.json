@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-MscvTrinitianosApplication<mscv-trinitianos>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mscv_trinitianos.MscvTrinitianosApplication",
+            "projectName": "mscv-trinitianos",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
+                "SPRING_DATASOURCE_USERNAME": "service3it",
+                "SPRING_DATASOURCE_PASSWORD": "service3it",
+            }
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvEurekaApplication<mcsv-eureka>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_eureka.McsvEurekaApplication",
+            "projectName": "mcsv-eureka",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
