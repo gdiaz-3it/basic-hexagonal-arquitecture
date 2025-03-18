@@ -20,9 +20,11 @@ import com.service3it.mscv_trinitianos.application.usecase.UpdateTrinitianoByIdU
 import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
 
 import jakarta.persistence.EntityNotFoundException;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/api")
+@AllArgsConstructor
 public class TrinitianosController {
 
     private final DeleteTrinitianoByIdUseCaseImpl deleteTrinitianoById;
@@ -31,15 +33,6 @@ public class TrinitianosController {
     private final SaveTrinitianosUseCaseImpl saveTrinitianos;
     private final UpdateTrinitianoByIdUseCaseImpl updateTrinitianoById;
     
-
-    public TrinitianosController(DeleteTrinitianoByIdUseCaseImpl deleteTrinitianoByIdUseCaseImpl, GetAllTrinitianosUseCaseImpl getAllTrinitianosUseCaseImpl, GetTrinitianosByIdUseCaseImpl getTrinitianosByIdUseCaseImpl, SaveTrinitianosUseCaseImpl saveTrinitianosUseCaseImpl, UpdateTrinitianoByIdUseCaseImpl updateTrinitianoByIdUseCaseImpl) {
-        this.deleteTrinitianoById = deleteTrinitianoByIdUseCaseImpl;
-        this.getAllTrinitianos = getAllTrinitianosUseCaseImpl;
-        this.getTrinitianosById = getTrinitianosByIdUseCaseImpl;
-        this.saveTrinitianos = saveTrinitianosUseCaseImpl;
-        this.updateTrinitianoById = updateTrinitianoByIdUseCaseImpl;
-    }
-
     @GetMapping("/trinitianos")
     public ResponseEntity<List<Trinitianos>> getAllTrinitianos() {
         List<Trinitianos> trinitianos = getAllTrinitianos.getAllTrinitianos();
