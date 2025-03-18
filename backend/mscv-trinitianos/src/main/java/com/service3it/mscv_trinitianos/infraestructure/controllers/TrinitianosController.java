@@ -12,7 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.service3it.mscv_trinitianos.application.services.TrinitianosService;
+import com.service3it.mscv_trinitianos.application.usecase.DeleteTrinitianoByIdUseCaseImpl;
+import com.service3it.mscv_trinitianos.application.usecase.GetAllTrinitianosUseCaseImpl;
+import com.service3it.mscv_trinitianos.application.usecase.GetTrinitianosByIdUseCaseImpl;
+import com.service3it.mscv_trinitianos.application.usecase.SaveTrinitianosUseCaseImpl;
+import com.service3it.mscv_trinitianos.application.usecase.UpdateTrinitianoByIdUseCaseImpl;
 import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -21,15 +25,24 @@ import jakarta.persistence.EntityNotFoundException;
 @RequestMapping("/api")
 public class TrinitianosController {
 
-    private TrinitianosService trinitianosService;
+    private final DeleteTrinitianoByIdUseCaseImpl deleteTrinitianoById;
+    private final GetAllTrinitianosUseCaseImpl getAllTrinitianos;
+    private final GetTrinitianosByIdUseCaseImpl getTrinitianosById;
+    private final SaveTrinitianosUseCaseImpl saveTrinitianos;
+    private final UpdateTrinitianoByIdUseCaseImpl updateTrinitianoById;
+    
 
-    public TrinitianosController(TrinitianosService trinitianosService) {
-        this.trinitianosService = trinitianosService;
+    public TrinitianosController(DeleteTrinitianoByIdUseCaseImpl deleteTrinitianoByIdUseCaseImpl, GetAllTrinitianosUseCaseImpl getAllTrinitianosUseCaseImpl, GetTrinitianosByIdUseCaseImpl getTrinitianosByIdUseCaseImpl, SaveTrinitianosUseCaseImpl saveTrinitianosUseCaseImpl, UpdateTrinitianoByIdUseCaseImpl updateTrinitianoByIdUseCaseImpl) {
+        this.deleteTrinitianoById = deleteTrinitianoByIdUseCaseImpl;
+        this.getAllTrinitianos = getAllTrinitianosUseCaseImpl;
+        this.getTrinitianosById = getTrinitianosByIdUseCaseImpl;
+        this.saveTrinitianos = saveTrinitianosUseCaseImpl;
+        this.updateTrinitianoById = updateTrinitianoByIdUseCaseImpl;
     }
 
     @GetMapping("/trinitianos")
     public ResponseEntity<List<Trinitianos>> getAllTrinitianos() {
-        List<Trinitianos> trinitianos = trinitianosService.getAllTrinitianos();
+        List<Trinitianos> trinitianos = getAllTrinitianos.getAllTrinitianos();
         if (trinitianos != null) {
             return new ResponseEntity<>(trinitianos, HttpStatus.OK);
         } else {
@@ -39,7 +52,7 @@ public class TrinitianosController {
 
     @GetMapping("/trinitianos/{id}")
     public ResponseEntity<Trinitianos> getTrinitianosById(@PathVariable Long id) {
-        Trinitianos trinitianos = trinitianosService.getTrinitianosById(id);
+        Trinitianos trinitianos = getTrinitianosById.getTrinitianosById(id);
         if (trinitianos != null) {
             return new ResponseEntity<>(trinitianos, HttpStatus.OK);
         } else {
@@ -49,7 +62,7 @@ public class TrinitianosController {
 
     @PostMapping("/trinitianos")
     public ResponseEntity<Trinitianos> saveTrinitianos(@RequestBody Trinitianos trinitianos) {
-        Trinitianos trinitianosSaved = trinitianosService.saveTrinitianos(trinitianos);
+        Trinitianos trinitianosSaved = saveTrinitianos.saveTrinitianos(trinitianos);
         if (trinitianosSaved != null) {
             return new ResponseEntity<>(trinitianosSaved, HttpStatus.CREATED);
         } else {
@@ -59,14 +72,14 @@ public class TrinitianosController {
 
     @DeleteMapping("/trinitianos/{id}")
     public ResponseEntity<Void> deleteTrinitianoById(@PathVariable Long id) {
-        trinitianosService.deleteTrinitianoById(id);
+        deleteTrinitianoById.deleteTrinitianoById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PatchMapping("/trinitianos/{id}")
     public ResponseEntity<Trinitianos> updateTrinitianoById(@PathVariable Long id, @RequestBody Trinitianos trinitianos) {
         try {
-            Trinitianos trinitianosUpdated = trinitianosService.updateTrinitianoById(id, trinitianos);
+            Trinitianos trinitianosUpdated = updateTrinitianoById.updateTrinitianoById(id, trinitianos);
             return ResponseEntity.ok(trinitianosUpdated);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
