@@ -1,4 +1,4 @@
-# Capacitación
+# Frontend Arquitectura Hexagonal
 
 ## Project setup
 ```
