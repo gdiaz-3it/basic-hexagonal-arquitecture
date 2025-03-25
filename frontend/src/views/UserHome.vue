@@ -94,23 +94,13 @@ export default {
     const currentPage = ref(1);
     const message = ref("");
     const messageType = ref("");
-    
-    const token = ref(localStorage.getItem("jwt"));
-    
-    const axiosConfig = {
-      headers: {
-        Authorization: `Bearer ${token.value}`,
-      },
-    };
 
     const router = useRouter();
 
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8095/api/estudiantes",
-          axiosConfig
-        );
+          "http://localhost:8095/api/estudiantes",);
         console.log("Estudiantes recibidos:", response.data);
         students.value = response.data;
       } catch (error) {
@@ -123,9 +113,7 @@ export default {
     const fetchCourses = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8095/api/carreras",
-          axiosConfig
-        );
+          "http://localhost:8095/api/carreras",);
         courses.value = response.data;
       } catch (error) {
         console.error("Error al obtener carreras:", error);
@@ -159,8 +147,7 @@ export default {
             name: newStudent.value.name,
             surname: newStudent.value.surname,
             careerId: selectedCareer.careerId,
-          },
-          axiosConfig
+          }
         );
 
         students.value.push(response.data);
@@ -200,17 +187,10 @@ export default {
     };
 
     const logout = () => {
-      localStorage.removeItem("jwt");
       router.push("/login");
     };
 
     onMounted(async () => {
-      if (!token.value) {
-        message.value = "Autenticación requerida. Inicia sesión.";
-        messageType.value = "error";
-        return;
-      }
-
       await Promise.all([fetchStudents(), fetchCourses()]);
     });
 

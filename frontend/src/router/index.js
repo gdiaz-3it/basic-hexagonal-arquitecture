@@ -4,13 +4,9 @@ import UserHome from "../views/UserHome.vue";
 const routes = [
   {
     path: "/",
-    redirect: "/userHome",
-  },
-  {
-    path: "/userHome",
     name: "UserHome",
-    component: UserHome,
-  },
+    component: UserHome
+  }
 ];
 
 const router = createRouter({
