@@ -3,9 +3,9 @@ package com.service3it.mscv_trinitianos.infraestructure.mapper.in;
 import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
 import com.service3it.mscv_trinitianos.infraestructure.entities.TrinitianosEntity;
 
-public class TrinitianosEntityToDomainMapper {
+public class TrinitianosDomainToEntityMapper {
 
-    public static TrinitianosEntity fromDomainModel(Trinitianos trinitianos) {
+    public static TrinitianosEntity toEntity(Trinitianos trinitianos) {
 
         return new TrinitianosEntity(trinitianos.getId(), trinitianos.getNombre(), trinitianos.getApellido(),
                                     trinitianos.getCorreo_electronico(), trinitianos.getTelefono(), trinitianos.getEstado(),
