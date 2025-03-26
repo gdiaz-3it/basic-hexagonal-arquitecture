@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,6 +12,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -21,6 +20,7 @@ import lombok.Setter;
 @Setter
 @Table(name = "trinitianos")
 @AllArgsConstructor
+@NoArgsConstructor
 public class TrinitianosEntity {
 
     @Id
@@ -52,21 +52,7 @@ public class TrinitianosEntity {
     private String enlace_jira;
 
     @CreationTimestamp
-    @Column(name = "fecha_creacion")
+    @Column(name = "fecha_creacion", updatable = false)
     private LocalDateTime fecha_creacion;
-
-    public TrinitianosEntity() {
-    }
-
-    public static TrinitianosEntity fromDomainModel(Trinitianos trinitianos) {
-        return new TrinitianosEntity(trinitianos.getId(), trinitianos.getNombre(), trinitianos.getApellido(),
-                trinitianos.getCorreo_electronico(), trinitianos.getTelefono(), trinitianos.getEstado(),
-                trinitianos.getEnlace_bizneo(), trinitianos.getEnlace_hubspot(), trinitianos.getEnlace_jira(), trinitianos.getFecha_creacion());
-    }
-
-    public Trinitianos toDomainModel() {
-        return new Trinitianos(id, nombre, apellido, correo_electronico, telefono, estado, enlace_bizneo, enlace_hubspot,
-                enlace_jira, fecha_creacion);
-    }
 
 }
