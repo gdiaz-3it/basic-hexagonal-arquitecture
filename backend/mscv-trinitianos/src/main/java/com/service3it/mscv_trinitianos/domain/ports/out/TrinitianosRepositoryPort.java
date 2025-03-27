@@ -16,9 +16,4 @@ public interface TrinitianosRepositoryPort {
 
     Trinitianos updateTrinitianoById(Long id, Trinitianos trinitianos);
 
-
-
-
-
-
 }

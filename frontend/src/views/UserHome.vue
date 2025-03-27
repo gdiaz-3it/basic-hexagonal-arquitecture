@@ -19,11 +19,17 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="student in paginatedStudents" :key="student.studentId">
-          <td>{{ student.studentId }}</td>
-          <td>{{ student.name }}</td>
-          <td>{{ student.surname }}</td>
-          <td>{{ student.career.name }}</td>
+        <tr v-for="trinitianos in paginatedTrinitianos" :key="trinitianos.id">
+          <td>{{ trinitianos.id }}</td>
+          <td>{{ trinitianos.nombre }}</td>
+          <td>{{ trinitianos.apellido }}</td>
+          <td>{{ trinitianos.correo_electronico }}</td>
+          <td>{{ trinitianos.telefono }}</td>
+          <td>{{ trinitianos.estado }}</td>
+          <td>{{ trinitianos.enlace_bizneo }}</td>
+          <td>{{ trinitianos.enlace_hubspot }}</td>
+          <td>{{ trinitianos.enlace_jira }}</td>
+          <td>{{ trinitianos.fecha_creacion }}</td>
         </tr>
       </tbody>
     </table>
@@ -100,7 +106,7 @@ export default {
     const fetchStudents = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8095/api/estudiantes",);
+          "http://localhost:8081/api/trinitianos",);
         console.log("Estudiantes recibidos:", response.data);
         students.value = response.data;
       } catch (error) {
@@ -169,7 +175,7 @@ export default {
       Math.ceil(students.value.length / elementsPerPage)
     );
 
-    const paginatedStudents = computed(() => {
+    const paginatedTrinitianos = computed(() => {
       const start = (currentPage.value - 1) * elementsPerPage;
       return students.value.slice(start, start + elementsPerPage);
     });
@@ -198,7 +204,7 @@ export default {
       students,
       courses,
       newStudent,
-      paginatedStudents,
+      paginatedTrinitianos,
       currentPage,
       totalPages,
       nextPage,
