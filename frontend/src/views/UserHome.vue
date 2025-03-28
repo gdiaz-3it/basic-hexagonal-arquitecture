@@ -15,7 +15,7 @@
           <th>Enlace Bizneo</th>
           <th>Enlace HubSpot</th>
           <th>Enlace Jira</th>
-          <th>Fecha Creacion</th>
+          <th>Acciones</th>
         </tr>
       </thead>
       <tbody>
@@ -29,7 +29,11 @@
           <td>{{ trinitianos.enlace_bizneo }}</td>
           <td>{{ trinitianos.enlace_hubspot }}</td>
           <td>{{ trinitianos.enlace_jira }}</td>
-          <td>{{ trinitianos.fecha_creacion }}</td>
+          <td>
+            <button @click="deleteTrinitiano(trinitianos.id)" class="delete-button">
+              Eliminar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -90,11 +94,6 @@
       </form>
     </div>
 
-     <!-- Botón de Logout -->
-     <div class="logout-container">
-      <button @click="logout">Cerrar Sesión</button>
-    </div>
-
     <div v-if="message" :class="['message', messageType]">{{ message }}</div>
   </div>
 </template>
@@ -102,7 +101,6 @@
 <script>
 import axios from "axios";
 import { ref, computed, onMounted } from "vue";
-import { useRouter } from "vue-router";
 
 export default {
   name: "UserHome",
@@ -122,8 +120,6 @@ export default {
     const currentPage = ref(1);
     const message = ref("");
     const messageType = ref("");
-
-    const router = useRouter();
 
     const fetchTrinitianos = async () => {
       try {
@@ -166,6 +162,25 @@ export default {
       }
     };
 
+    const deleteTrinitiano = async (id) => {
+      if (!confirm("¿Estás seguro de que deseas eliminar este trinitiano?")) return;
+
+      try {
+        await axios.delete(`http://localhost:8081/api/trinitianos/${id}`);
+        trinitianos.value = trinitianos.value.filter(t => t.id !== id);
+        message.value = "Trinitiano eliminado correctamente.";
+        messageType.value = "success";
+
+        setTimeout(() => {
+          message.value = "";
+        }, 2500);
+      } catch (error) {
+        console.error("Error al eliminar trinitiano:", error);
+        message.value = "Error al eliminar el trinitiano.";
+        messageType.value = "error";
+      }
+    };
+
     const totalPages = computed(() =>
       Math.ceil(trinitianos.value.length / elementsPerPage)
     );
@@ -187,10 +202,6 @@ export default {
       }
     };
 
-    const logout = () => {
-      router.push("/login");
-    };
-
     onMounted(() => {
       fetchTrinitianos();
     });
@@ -203,136 +214,12 @@ export default {
       totalPages,
       nextPage,
       previousPage,
+      fetchTrinitianos,
       addTrinitiano,
+      deleteTrinitiano,
       message,
-      messageType,
-      logout,
+      messageType
     };
   },
 };
 </script>
-
-<style scoped>
-.home-container {
-  text-align: center;
-  margin-top: 50px;
-}
-
-.logout-container {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.logout-container button {
-  padding: 8px 15px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.logout-container button:hover {
-  background-color: #c82333;
-}
-
-.items-table {
-  margin: 20px auto;
-  width: 40%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-.items-table th,
-.items-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-}
-
-.items-table th {
-  background-color: #f4f4f4;
-}
-
-.pagination {
-  margin-top: 20px;
-}
-
-.pagination button {
-  margin: 0 10px;
-  padding: 5px 10px;
-}
-
-.error {
-  color: red;
-  font-size: 12px;
-}
-
-.input-error {
-  border-color: red;
-}
-
-.form-container {
-  margin-top: 30px;
-  text-align: left;
-  max-width: 400px;
-  margin: 30px auto;
-}
-
-.form-field {
-  margin-bottom: 15px;
-  display: flex;
-  align-items: center;
-}
-
-.message {
-  margin: 10px 0;
-  padding: 10px;
-  border-radius: 5px;
-  text-align: center;
-}
-
-.success {
-  background-color: #d4edda;
-  color: #155724;
-  border: 1px solid #c3e6cb;
-}
-
-.error {
-  background-color: #f8d7da;
-  color: #721c24;
-  border: 1px solid #f5c6cb;
-}
-.form-container h2 {
-  text-align: center;
-}
-.button-container {
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-}
-
-label {
-  margin-right: 15px;
-  min-width: 150px;
-}
-
-input,
-select {
-  flex-grow: 1;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-button {
-  padding: 8px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-</style>
