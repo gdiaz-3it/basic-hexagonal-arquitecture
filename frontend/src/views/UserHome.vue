@@ -29,14 +29,67 @@
           <td>{{ trinitianos.enlace_bizneo }}</td>
           <td>{{ trinitianos.enlace_hubspot }}</td>
           <td>{{ trinitianos.enlace_jira }}</td>
-          <td>
-            <button @click="deleteTrinitiano(trinitianos.id)" class="delete-button">
-              Eliminar
+          <td class="actions-container">
+            <button @click="toggleDropdown(trinitianos.id)" class="btn-actions">
+              Acciones
             </button>
+            <div v-if="openDropdown === trinitianos.id" class="dropdown-menu">
+              <button @click="editTrinitiano(trinitianos)" class="dropdown-item">
+                Editar
+              </button>
+              <button @click="deleteTrinitiano(trinitianos.id)" class="dropdown-item cancel-delete">
+                Eliminar
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>
     </table>
+
+    <div v-if="editingTrinitiano" class="form-container">
+      <h2>Editar Trinitiano</h2>
+      <form @submit.prevent="updateTrinitiano">
+        <div class="form-field">
+          <label for="nombre">Nombre:</label>
+          <input type="text" v-model="editingTrinitiano.nombre" required />
+        </div>
+        <div class="form-field">
+          <label for="apellido">Apellido:</label>
+          <input type="text" v-model="editingTrinitiano.apellido" required />
+        </div>
+        <div class="form-field">
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" v-model="editingTrinitiano.correo_electronico" required />
+        </div>
+        <div class="form-field">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" v-model="editingTrinitiano.telefono" required />
+        </div>
+        <div class="form-field">
+          <label for="estado">Estado:</label>
+          <select v-model="editingTrinitiano.estado" required>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="bizneo">Enlace Bizneo:</label>
+          <input type="url" v-model="editingTrinitiano.enlace_bizneo" required />
+        </div>
+        <div class="form-field">
+          <label for="hubspot">Enlace HubSpot:</label>
+          <input type="url" v-model="editingTrinitiano.enlace_hubspot" required />
+        </div>
+        <div class="form-field">
+          <label for="hubspot">Enlace HubSpot:</label>
+          <input type="url" v-model="editingTrinitiano.enlace_hubspot" required />
+        </div>
+        <div class="button-container">
+          <button type="submit">Actualizar</button>
+          <button class="cancel-delete" @click="cancelEdit">Cancelar</button>
+        </div>
+      </form>
+    </div>
 
     <!-- Paginación -->
     <div class="pagination">
@@ -105,7 +158,9 @@ import { ref, computed, onMounted } from "vue";
 export default {
   name: "UserHome",
   setup() {
+    const openDropdown = ref(null);
     const trinitianos = ref([]);
+    const editingTrinitiano = ref(null);
     const newTrinitiano = ref({
       nombre: "",
       apellido: "",
@@ -120,6 +175,14 @@ export default {
     const currentPage = ref(1);
     const message = ref("");
     const messageType = ref("");
+
+    const toggleDropdown = (id) => {
+      openDropdown.value = openDropdown.value === id ? null : id;
+    };
+
+    const cancelEdit = () => {
+      editingTrinitiano.value = null;
+    };
 
     const fetchTrinitianos = async () => {
       try {
@@ -181,6 +244,24 @@ export default {
       }
     };
 
+    const editTrinitiano = (trinitiano) => {
+      openDropdown.value = null;
+      editingTrinitiano.value = { ...trinitiano };
+    };
+
+    const updateTrinitiano = async () => {
+      try {
+        await axios.patch(`http://localhost:8081/api/trinitianos/${editingTrinitiano.value.id}`, editingTrinitiano.value);
+        const index = trinitianos.value.findIndex(t => t.id === editingTrinitiano.value.id);
+        if (index !== -1) {
+          trinitianos.value[index] = { ...editingTrinitiano.value };
+        }
+        editingTrinitiano.value = null;
+      } catch (error) {
+        console.error("Error al actualizar trinitiano:", error);
+      }
+    };
+
     const totalPages = computed(() =>
       Math.ceil(trinitianos.value.length / elementsPerPage)
     );
@@ -207,8 +288,12 @@ export default {
     });
 
     return {
+      openDropdown,
+      toggleDropdown,
+      cancelEdit,
       trinitianos,
       newTrinitiano,
+      editingTrinitiano,
       paginatedTrinitianos,
       currentPage,
       totalPages,
@@ -216,6 +301,8 @@ export default {
       previousPage,
       fetchTrinitianos,
       addTrinitiano,
+      editTrinitiano,
+      updateTrinitiano,
       deleteTrinitiano,
       message,
       messageType
