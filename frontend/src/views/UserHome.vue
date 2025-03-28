@@ -47,24 +47,42 @@
 
     <!-- Formulario para agregar estudiante -->
     <div class="form-container">
-      <h2>Agregar Estudiante</h2>
-      <form @submit.prevent="addStudent">
+      <h2>Agregar Tritiano</h2>
+      <form @submit.prevent="addTrinitiano">
         <div class="form-field">
-          <label for="name">Nombre:</label>
-          <input type="text" id="name" v-model="newStudent.name" required />
+          <label for="nombre">Nombre:</label>
+          <input type="text" id="name" v-model="newTrinitiano.nombre" required />
         </div>
         <div class="form-field">
-          <label for="surname">Apellido:</label>
-          <input type="text" id="surname" v-model="newStudent.surname" required />
+          <label for="apellido">Apellido:</label>
+          <input type="text" id="apellido" v-model="newTrinitiano.apellido" required />
         </div>
         <div class="form-field">
-          <label for="career">Carrera:</label>
-          <select v-model="newStudent.careerName" required>
-            <option disabled value="">Selecciona una carrera</option>
-            <option v-for="career in courses" :key="career.careerId" :value="career.name">
-              {{ career.name }}
-            </option>
+          <label for="correo">Correo Electrónico:</label>
+          <input type="email" id="correo" v-model="newTrinitiano.correo_electronico" required />
+        </div>
+        <div class="form-field">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" id="telefono" v-model="newTrinitiano.telefono" required />
+        </div>
+        <div class="form-field">
+          <label for="estado">Estado:</label>
+          <select v-model="newTrinitiano.estado" required>
+            <option value="Activo">Activo</option>
+            <option value="Inactivo">Inactivo</option>
           </select>
+        </div>
+        <div class="form-field">
+          <label for="bizneo">Enlace Bizneo:</label>
+          <input type="url" id="bizneo" v-model="newTrinitiano.enlace_bizneo" required />
+        </div>
+        <div class="form-field">
+          <label for="hubspot">Enlace Hubspot:</label>
+          <input type="url" id="hubspot" v-model="newTrinitiano.enlace_hubspot" required />
+        </div>
+        <div class="form-field">
+          <label for="jira">Enlace Jira:</label>
+          <input type="url" id="jira" v-model="newTrinitiano.enlace_jira" required />
         </div>
         <div class="button-container">
           <button type="submit">Agregar Estudiante</button>
@@ -89,12 +107,16 @@ import { useRouter } from "vue-router";
 export default {
   name: "UserHome",
   setup() {
-    const students = ref([]);
-    const courses = ref([]);
-    const newStudent = ref({
-      name: "",
-      surname: "",
-      careerName: "",
+    const trinitianos = ref([]);
+    const newTrinitiano = ref({
+      nombre: "",
+      apellido: "",
+      correo_electronico: "",
+      telefono: "",
+      estado: "",
+      enlace_bizneo: "",
+      enlace_hubspot: "",
+      enlace_jira: "",
     });
     const elementsPerPage = 4;
     const currentPage = ref(1);
@@ -103,81 +125,54 @@ export default {
 
     const router = useRouter();
 
-    const fetchStudents = async () => {
+    const fetchTrinitianos = async () => {
       try {
         const response = await axios.get(
           "http://localhost:8081/api/trinitianos",);
-        console.log("Estudiantes recibidos:", response.data);
-        students.value = response.data;
+        console.log("Trinitianos recibidos:", response.data);
+        trinitianos.value = response.data;
       } catch (error) {
-        console.error("Error al obtener estudiantes:", error);
-        message.value = "Error al cargar los estudiantes.";
+        console.error("Error al obtener trinitianos:", error);
+        message.value = "Error al cargar los trinitianos.";
         messageType.value = "error";
       }
     };
 
-    const fetchCourses = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:8095/api/carreras",);
-        courses.value = response.data;
-      } catch (error) {
-        console.error("Error al obtener carreras:", error);
-        message.value = "Error al cargar las carreras.";
-        messageType.value = "error";
-      }
-    };
-
-    const addStudent = async () => {
+    const addTrinitiano = async () => {
       message.value = "";
-      if (!newStudent.value.careerName) {
-        message.value = "Por favor, selecciona una carrera.";
-        messageType.value = "error";
-        return;
-      }
-
-      const selectedCareer = courses.value.find(
-        (career) => career.name === newStudent.value.careerName
-      );
-
-      if (!selectedCareer) {
-        message.value = "Carrera no encontrada.";
-        messageType.value = "error";
-        return;
-      }
-
       try {
-        const response = await axios.post(
-          "http://localhost:8095/api/estudiantes/agregar",
-          {
-            name: newStudent.value.name,
-            surname: newStudent.value.surname,
-            careerId: selectedCareer.careerId,
-          }
-        );
-
-        students.value.push(response.data);
-        newStudent.value = { name: "", surname: "", careerName: "" };
-        message.value = "Estudiante agregado con éxito.";
+        const response = await axios.post("http://localhost:8081/api/trinitianos", newTrinitiano.value);
+        trinitianos.value.push(response.data);
+        newTrinitiano.value = {
+          nombre: "",
+          apellido: "",
+          correo_electronico: "",
+          telefono: "",
+          estado: "",
+          enlace_bizneo: "",
+          enlace_hubspot: "",
+          enlace_jira: "",
+        };
+        message.value = "Trinitiano agregado con éxito.";
         messageType.value = "success";
 
         setTimeout(() => {
           message.value = "";
         }, 2500);
       } catch (error) {
-        console.error("Error al agregar estudiante:", error);
-        message.value = "Error al agregar el estudiante.";
+        console.error("Error al agregar trinitiano:", error);
+        message.value = "Error al agregar el trinitiano.";
         messageType.value = "error";
       }
     };
 
     const totalPages = computed(() =>
-      Math.ceil(students.value.length / elementsPerPage)
+      Math.ceil(trinitianos.value.length / elementsPerPage)
     );
 
     const paginatedTrinitianos = computed(() => {
       const start = (currentPage.value - 1) * elementsPerPage;
-      return students.value.slice(start, start + elementsPerPage);
+      return trinitianos.value.slice(start, start + elementsPerPage);
     });
 
     const nextPage = () => {
@@ -196,20 +191,19 @@ export default {
       router.push("/login");
     };
 
-    onMounted(async () => {
-      await Promise.all([fetchStudents(), fetchCourses()]);
+    onMounted(() => {
+      fetchTrinitianos();
     });
 
     return {
-      students,
-      courses,
-      newStudent,
+      trinitianos,
+      newTrinitiano,
       paginatedTrinitianos,
       currentPage,
       totalPages,
       nextPage,
       previousPage,
-      addStudent,
+      addTrinitiano,
       message,
       messageType,
       logout,
