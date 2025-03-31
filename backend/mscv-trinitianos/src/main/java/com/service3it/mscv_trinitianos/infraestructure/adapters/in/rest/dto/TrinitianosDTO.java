@@ -13,6 +13,7 @@ public class TrinitianosDTO {
     private String nombre;
     private String apellido;
     private String correoElectronico;
+    private String rut;
     private String telefono;
     private String estado;
     private String enlaceBizneo;

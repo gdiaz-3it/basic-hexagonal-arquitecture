@@ -11,6 +11,7 @@ public class TrinitianosMapper {
             trinitianos.getNombre(),
             trinitianos.getApellido(),
             trinitianos.getCorreoElectronico(),
+            trinitianos.getRut(),
             trinitianos.getTelefono(),
             trinitianos.getEstado(),
             trinitianos.getEnlaceBizneo(),
@@ -27,6 +28,7 @@ public class TrinitianosMapper {
             trinitianosEntity.getNombre(),
             trinitianosEntity.getApellido(),
             trinitianosEntity.getCorreoElectronico(),
+            trinitianosEntity.getRut(),
             trinitianosEntity.getTelefono(),
             trinitianosEntity.getEstado(),
             trinitianosEntity.getEnlaceBizneo(),
@@ -46,6 +48,9 @@ public class TrinitianosMapper {
         }
         if (trinitianos.getCorreoElectronico() != null) {
             trinitianosEntity.setCorreoElectronico(trinitianos.getCorreoElectronico());
+        }
+        if (trinitianos.getRut() != null) {
+            trinitianosEntity.setRut(trinitianos.getRut());
         }
         if (trinitianos.getTelefono() != null) {
             trinitianosEntity.setTelefono(trinitianos.getTelefono());

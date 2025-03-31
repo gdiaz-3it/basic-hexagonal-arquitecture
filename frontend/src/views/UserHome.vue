@@ -9,6 +9,7 @@
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo Electronico</th>
+          <th>Rut</th>
           <th>Telefono</th>
           <th>Estado</th>
           <th>Enlace Bizneo</th>
@@ -22,6 +23,7 @@
           <td>{{ trinitianos.nombre }}</td>
           <td>{{ trinitianos.apellido }}</td>
           <td>{{ trinitianos.correoElectronico }}</td>
+          <td>{{ trinitianos.rut }}</td>
           <td>{{ trinitianos.telefono }}</td>
           <td>{{ trinitianos.estado }}</td>
           <td>{{ trinitianos.enlaceBizneo }}</td>
@@ -58,6 +60,10 @@
         <div class="form-field">
           <label for="correo">Correo Electrónico:</label>
           <input type="email" v-model="editingTrinitiano.correoElectronico" required />
+        </div>
+        <div class="form-field">
+          <label for="rut">Rut:</label>
+          <input type="text" v-model="editingTrinitiano.rut" required />
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono:</label>
@@ -117,6 +123,10 @@
           <input type="email" id="correo" v-model="newTrinitiano.correoElectronico" required />
         </div>
         <div class="form-field">
+          <label for="rut">Rut:</label>
+          <input type="text" id="rut" v-model="newTrinitiano.rut" required />
+        </div>
+        <div class="form-field">
           <label for="telefono">Teléfono:</label>
           <input type="text" id="telefono" v-model="newTrinitiano.telefono" required />
         </div>
@@ -163,6 +173,7 @@ export default {
       nombre: "",
       apellido: "",
       correoElectronico: "",
+      rut: "",
       telefono: "",
       estado: "",
       enlaceBizneo: "",
@@ -204,6 +215,7 @@ export default {
           nombre: "",
           apellido: "",
           correoElectronico: "",
+          rut: "",
           telefono: "",
           estado: "",
           enlaceBizneo: "",

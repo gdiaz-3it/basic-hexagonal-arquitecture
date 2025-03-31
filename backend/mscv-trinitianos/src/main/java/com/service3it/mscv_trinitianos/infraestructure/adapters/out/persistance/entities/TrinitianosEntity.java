@@ -38,6 +38,9 @@ public class TrinitianosEntity {
     @Column(name = "email", length = 50, unique = true)
     private String correoElectronico;
 
+    @Column(name = "rut", length = 50, unique = true)
+    private String rut;
+
     @Column(name = "telefono", length = 50)
     private String telefono;
 
