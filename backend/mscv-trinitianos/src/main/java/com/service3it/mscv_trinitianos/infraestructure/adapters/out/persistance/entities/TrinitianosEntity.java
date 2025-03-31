@@ -1,8 +1,10 @@
-package com.service3it.mscv_trinitianos.infraestructure.entities;
+package com.service3it.mscv_trinitianos.infraestructure.adapters.out.persistance.entities;
 
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.FractionalSeconds;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -34,7 +36,7 @@ public class TrinitianosEntity {
     private String apellido;
 
     @Column(name = "email", length = 50, unique = true)
-    private String correo_electronico;
+    private String correoElectronico;
 
     @Column(name = "telefono", length = 50)
     private String telefono;
@@ -43,16 +45,22 @@ public class TrinitianosEntity {
     private String estado;
 
     @Column(name = "enlace_bizneo", length = 50)
-    private String enlace_bizneo;
+    private String enlaceBizneo;
 
     @Column(name = "enlace_hubspot", length = 50)
-    private String enlace_hubspot;
+    private String enlaceHubspot;
 
     @Column(name = "enlace_jira", length = 50)
-    private String enlace_jira;
+    private String enlaceJira;
 
     @CreationTimestamp
-    @Column(name = "fecha_creacion", updatable = false)
-    private LocalDateTime fecha_creacion;
+    @FractionalSeconds(value = 0)
+    @Column(name = "fecha_creacion", updatable = false, nullable = false)
+    private LocalDateTime fechaCreacion;
+
+    @UpdateTimestamp
+    @FractionalSeconds(value = 0)
+    @Column(name = "fecha_modificacion", nullable = false)
+    private LocalDateTime fechaModificacion;
 
 }

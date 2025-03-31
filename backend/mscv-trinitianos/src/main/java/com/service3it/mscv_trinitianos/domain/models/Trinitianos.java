@@ -4,28 +4,30 @@ import java.time.LocalDateTime;
 
 public class Trinitianos {
 
-    private Long id;
-    private String nombre;
-    private String apellido;
-    private String correo_electronico;
-    private String telefono;
-    private String estado;
-    private String enlace_bizneo;
-    private String enlace_hubspot;
-    private String enlace_jira;
-    private LocalDateTime fecha_creacion;
+    private final Long id;
+    private final String nombre;
+    private final String apellido;
+    private final String correoElectronico;
+    private final String telefono;
+    private final String estado;
+    private final String enlaceBizneo;
+    private final String enlaceHubspot;
+    private final String enlaceJira;
+    private final LocalDateTime fechaCreacion;
+    private final LocalDateTime fechaModificacion;
 
-    public Trinitianos (Long id, String nombre, String apellido, String correo_electronico, String telefono, String estado, String enlace_bizneo, String enlace_hubspot, String enlace_jira, LocalDateTime fecha_creacion) {
+    public Trinitianos (Long id, String nombre, String apellido, String correoElectronico, String telefono, String estado, String enlaceBizneo, String enlaceHubspot, String enlaceJira, LocalDateTime fechaCreacion, LocalDateTime fechaModificacion) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo_electronico = correo_electronico;
+        this.correoElectronico = correoElectronico;
         this.telefono = telefono;
         this.estado = estado;
-        this.enlace_bizneo = enlace_bizneo;
-        this.enlace_hubspot = enlace_hubspot;
-        this.enlace_jira = enlace_jira;
-        this.fecha_creacion = fecha_creacion;
+        this.enlaceBizneo = enlaceBizneo;
+        this.enlaceHubspot = enlaceHubspot;
+        this.enlaceJira = enlaceJira;
+        this.fechaCreacion = fechaCreacion;
+        this.fechaModificacion = fechaModificacion;
     }
 
     public Long getId() {
@@ -40,8 +42,8 @@ public class Trinitianos {
         return apellido;
     }
 
-    public String getCorreo_electronico() {
-        return correo_electronico;
+    public String getCorreoElectronico() {
+        return correoElectronico;
     }
 
     public String getTelefono() {
@@ -52,20 +54,24 @@ public class Trinitianos {
         return estado;
     }
 
-    public String getEnlace_bizneo() {
-        return enlace_bizneo;
+    public String getEnlaceBizneo() {
+        return enlaceBizneo;
     }
 
-    public String getEnlace_hubspot() {
-        return enlace_hubspot;
+    public String getEnlaceHubspot() {
+        return enlaceHubspot;
     }
 
-    public String getEnlace_jira() {
-        return enlace_jira;
+    public String getEnlaceJira() {
+        return enlaceJira;
     }
 
-    public LocalDateTime getFecha_creacion() {
-        return fecha_creacion;
+    public LocalDateTime getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public LocalDateTime getFechaModificacion() {
+        return fechaModificacion;
     }
 
 }

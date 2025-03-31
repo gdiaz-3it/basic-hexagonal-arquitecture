@@ -6,7 +6,6 @@
     <table class="items-table">
       <thead>
         <tr>
-          <th>ID</th>
           <th>Nombre</th>
           <th>Apellido</th>
           <th>Correo Electronico</th>
@@ -20,15 +19,14 @@
       </thead>
       <tbody>
         <tr v-for="trinitianos in paginatedTrinitianos" :key="trinitianos.id">
-          <td>{{ trinitianos.id }}</td>
           <td>{{ trinitianos.nombre }}</td>
           <td>{{ trinitianos.apellido }}</td>
-          <td>{{ trinitianos.correo_electronico }}</td>
+          <td>{{ trinitianos.correoElectronico }}</td>
           <td>{{ trinitianos.telefono }}</td>
           <td>{{ trinitianos.estado }}</td>
-          <td>{{ trinitianos.enlace_bizneo }}</td>
-          <td>{{ trinitianos.enlace_hubspot }}</td>
-          <td>{{ trinitianos.enlace_jira }}</td>
+          <td>{{ trinitianos.enlaceBizneo }}</td>
+          <td>{{ trinitianos.enlaceHubspot }}</td>
+          <td>{{ trinitianos.enlaceJira }}</td>
           <td class="actions-container">
             <button @click="toggleDropdown(trinitianos.id)" class="btn-actions">
               Acciones
@@ -59,7 +57,7 @@
         </div>
         <div class="form-field">
           <label for="correo">Correo Electrónico:</label>
-          <input type="email" v-model="editingTrinitiano.correo_electronico" required />
+          <input type="email" v-model="editingTrinitiano.correoElectronico" required />
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono:</label>
@@ -74,15 +72,15 @@
         </div>
         <div class="form-field">
           <label for="bizneo">Enlace Bizneo:</label>
-          <input type="url" v-model="editingTrinitiano.enlace_bizneo" required />
+          <input type="url" v-model="editingTrinitiano.enlaceBizneo" required />
         </div>
         <div class="form-field">
           <label for="hubspot">Enlace HubSpot:</label>
-          <input type="url" v-model="editingTrinitiano.enlace_hubspot" required />
+          <input type="url" v-model="editingTrinitiano.enlaceHubspot" required />
         </div>
         <div class="form-field">
-          <label for="hubspot">Enlace HubSpot:</label>
-          <input type="url" v-model="editingTrinitiano.enlace_hubspot" required />
+          <label for="hubspot">Enlace Jira:</label>
+          <input type="url" v-model="editingTrinitiano.enlaceJira" required />
         </div>
         <div class="button-container">
           <button type="submit">Actualizar</button>
@@ -116,7 +114,7 @@
         </div>
         <div class="form-field">
           <label for="correo">Correo Electrónico:</label>
-          <input type="email" id="correo" v-model="newTrinitiano.correo_electronico" required />
+          <input type="email" id="correo" v-model="newTrinitiano.correoElectronico" required />
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono:</label>
@@ -131,15 +129,15 @@
         </div>
         <div class="form-field">
           <label for="bizneo">Enlace Bizneo:</label>
-          <input type="url" id="bizneo" v-model="newTrinitiano.enlace_bizneo" required />
+          <input type="url" id="bizneo" v-model="newTrinitiano.enlaceBizneo" required />
         </div>
         <div class="form-field">
           <label for="hubspot">Enlace Hubspot:</label>
-          <input type="url" id="hubspot" v-model="newTrinitiano.enlace_hubspot" required />
+          <input type="url" id="hubspot" v-model="newTrinitiano.enlaceHubspot" required />
         </div>
         <div class="form-field">
           <label for="jira">Enlace Jira:</label>
-          <input type="url" id="jira" v-model="newTrinitiano.enlace_jira" required />
+          <input type="url" id="jira" v-model="newTrinitiano.enlaceJira" required />
         </div>
         <div class="button-container">
           <button type="submit">Agregar Estudiante</button>
@@ -164,12 +162,12 @@ export default {
     const newTrinitiano = ref({
       nombre: "",
       apellido: "",
-      correo_electronico: "",
+      correoElectronico: "",
       telefono: "",
       estado: "",
-      enlace_bizneo: "",
-      enlace_hubspot: "",
-      enlace_jira: "",
+      enlaceBizneo: "",
+      enlaceHubspot: "",
+      enlaceJira: "",
     });
     const elementsPerPage = 4;
     const currentPage = ref(1);
@@ -205,12 +203,12 @@ export default {
         newTrinitiano.value = {
           nombre: "",
           apellido: "",
-          correo_electronico: "",
+          correoElectronico: "",
           telefono: "",
           estado: "",
-          enlace_bizneo: "",
-          enlace_hubspot: "",
-          enlace_jira: "",
+          enlaceBizneo: "",
+          enlaceHubspot: "",
+          enlaceJira: "",
         };
         message.value = "Trinitiano agregado con éxito.";
         messageType.value = "success";
