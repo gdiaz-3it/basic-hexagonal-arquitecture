@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
 import com.service3it.mscv_trinitianos.domain.ports.in.*;
@@ -12,7 +13,6 @@ import com.service3it.mscv_trinitianos.infraestructure.adapters.in.rest.dto.Trin
 import com.service3it.mscv_trinitianos.infraestructure.adapters.in.rest.mapper.TrinitianosDtoToDomainMapper;
 
 import jakarta.persistence.EntityNotFoundException;
-
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -50,7 +50,7 @@ public class TrinitianosController {
     }
 
     @PostMapping("/trinitianos")
-    public ResponseEntity<TrinitianosDTO> saveTrinitianos(@RequestBody TrinitianosDTO trinitianosDTO) {
+    public ResponseEntity<TrinitianosDTO> saveTrinitianos(@Validated @RequestBody TrinitianosDTO trinitianosDTO) {
     Trinitianos domain = TrinitianosDtoToDomainMapper.toDomain(trinitianosDTO);
     Trinitianos saved = saveTrinitianos.saveTrinitianos(domain);
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -70,7 +70,7 @@ public class TrinitianosController {
     }
 
     @PatchMapping("/trinitianos/{id}")
-    public ResponseEntity<TrinitianosDTO> updateTrinitianoById(@PathVariable Long id, @RequestBody TrinitianosDTO trinitianosDTO) {
+    public ResponseEntity<TrinitianosDTO> updateTrinitianoById(@PathVariable Long id, @Validated @RequestBody TrinitianosDTO trinitianosDTO) {
         try {
             Trinitianos trinitianosDomain = TrinitianosDtoToDomainMapper.toDomain(trinitianosDTO);
             Trinitianos trinitianosUpdated = updateTrinitianoById.updateTrinitianoById(id, trinitianosDomain);
