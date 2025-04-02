@@ -135,6 +135,7 @@
           <select v-model="newTrinitiano.estado" required>
             <option value="Activo">Activo</option>
             <option value="Inactivo">Inactivo</option>
+            <option value="En Proceso">En Proceso</option>
           </select>
         </div>
         <div class="form-field">

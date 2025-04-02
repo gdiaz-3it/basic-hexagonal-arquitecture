@@ -42,7 +42,9 @@ public class TrinitianosDTO {
     private String telefono;
 
     @NotBlank(message = "El estado no puede estar vacío")
+    @Pattern(regexp = "^(Activo|Inactivo|En Proceso)$", message = "El estado debe ser 'Activo', 'Inactivo' o 'En Proceso'")
     private String estado;
+
 
     @NotBlank(message = "El enlace de Bizneo no puede estar vacío")
     @Size(min = 1, max = 50, message = "El enlace de Bizneo debe tener entre 1 y 50 caracteres")
