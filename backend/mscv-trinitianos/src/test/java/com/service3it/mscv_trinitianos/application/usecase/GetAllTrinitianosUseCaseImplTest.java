@@ -32,17 +32,14 @@ public class GetAllTrinitianosUseCaseImplTest {
 
     @Test
     void shouldReturnAllTrinitarios() {
-        // Arrange
         List<Trinitianos> mockTrinitarios = Arrays.asList(
             new Trinitianos(1L, "Juan", "Perez", "juan.perez@example.com", "12345678-9", "+12345678901", "Activo", null, null, null, null, null),
             new Trinitianos(2L, "Maria", "Gomez", "maria.gomez@example.com", "87654321-K", "+12345678902", "Inactivo", null, null, null, null, null)
         );
         when(trinitianosRepositoryPort.getAllTrinitianos()).thenReturn(mockTrinitarios);
 
-        // Act
         List<Trinitianos> result = getAllTrinitianosUseCase.getAllTrinitianos();
 
-        // Assert
         assertEquals(mockTrinitarios.size(), result.size());
         assertEquals(mockTrinitarios, result);
         verify(trinitianosRepositoryPort, times(1)).getAllTrinitianos();
@@ -50,13 +47,10 @@ public class GetAllTrinitianosUseCaseImplTest {
 
     @Test
     void shouldReturnEmptyListWhenNoTrinitariosFound() {
-        // Arrange
         when(trinitianosRepositoryPort.getAllTrinitianos()).thenReturn(List.of());
 
-        // Act
         List<Trinitianos> result = getAllTrinitianosUseCase.getAllTrinitianos();
-
-        // Assert
+        
         assertEquals(0, result.size());
         verify(trinitianosRepositoryPort, times(1)).getAllTrinitianos();
     }
