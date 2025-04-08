@@ -1,0 +1,14 @@
+[
+    {
+      "id": 1,
+      "nombre": "Juan",
+      "apellido": "Perez",
+      "correoElectronico": "juan.perez@example.com",
+      "rut": "12345678-9",
+      "telefono": "+12345678901",
+      "estado": "Activo",
+      "enlaceBizneo": "https://bizneo.com/juan",
+      "enlaceHubspot": "https://hubspot.com/juan",
+      "enlaceJira": "https://jira.com/juan"
+    }
+]
