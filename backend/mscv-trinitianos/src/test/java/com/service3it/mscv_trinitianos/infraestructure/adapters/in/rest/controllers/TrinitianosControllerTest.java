@@ -28,8 +28,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebMvcTest(TrinitianosController.class)
-@Import(TrinitianosControllerUnitTest.MockConfig.class)
-public class TrinitianosControllerUnitTest {
+@Import(TrinitianosControllerTest.MockConfig.class)
+public class TrinitianosControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
