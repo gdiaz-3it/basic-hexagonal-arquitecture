@@ -3,13 +3,13 @@ package com.service3it.mscv_trinitianos.architecture;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import com.tngtech.archunit.core.domain.JavaClass;
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
 import com.tngtech.archunit.lang.ArchRule;
 
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
 import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
+import static com.tngtech.archunit.library.dependencies.SlicesRuleDefinition.slices;
 
 public class HexagonalArchitectureTest {
 
@@ -24,6 +24,14 @@ public class HexagonalArchitectureTest {
     @BeforeAll
     public static void setup() {
         importedClasses = new ClassFileImporter().importPackages(BASE_PACKAGE);
+    }
+
+    @Test
+    public void packagesShouldBeFreeOfCycles() {
+        ArchRule rule = slices().matching("com.service3it.(*)..")
+            .should().beFreeOfCycles();
+
+        rule.check(importedClasses);
     }
 
     @Test
@@ -60,13 +68,30 @@ public class HexagonalArchitectureTest {
         inboundAdaptersRule.check(importedClasses);
         outboundAdaptersRule.check(importedClasses);
     }
-    
 
-    
+    @Test
+    public void onlyAdaptersAndApplicationShouldAccessInboundPortsIn() {
+        ArchRule rule = noClasses()
+            .that().resideOutsideOfPackages(
+                "..application..",
+                "..infraestructure.adapters.in.."
+        )
+        .should().dependOnClassesThat().resideInAnyPackage("..domain.ports.in..");
 
+        rule.check(importedClasses);
+    }
 
+    @Test
+    public void onlyAdaptersAndApplicationShouldAccessInboundPortsOut() {
+        ArchRule rule = noClasses()
+            .that().resideOutsideOfPackages(
+                "..application..",
+                "..infraestructure.adapters.out.."
+        )
+        .should().dependOnClassesThat().resideInAnyPackage("..domain.ports.out..");
 
-    
+        rule.check(importedClasses);
+    }
     
 
 }
