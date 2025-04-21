@@ -19,7 +19,6 @@ public class HexagonalArchitectureTest {
     private static final String APPLICATION_PACKAGE = BASE_PACKAGE + ".application..";
     private static final String INFRAESTRUCTURE_PACKAGE = BASE_PACKAGE + ".infraestructure..";
     private static final String PORTS_PACKAGE = BASE_PACKAGE + ".domain.ports..";
-    private static final String ADAPTERS_PACKAGE = BASE_PACKAGE + ".infraestructure.adapters..";
 
     @BeforeAll
     public static void setup() {
@@ -38,6 +37,7 @@ public class HexagonalArchitectureTest {
     public void domainShouldNotDependOnApplicationOrInfrastructure() {
         ArchRule rule = noClasses().that().resideInAPackage(DOMAIN_PACKAGE)
                 .should().dependOnClassesThat().resideInAnyPackage(APPLICATION_PACKAGE, INFRAESTRUCTURE_PACKAGE);
+        
         rule.check(importedClasses);
     }
 
@@ -45,6 +45,7 @@ public class HexagonalArchitectureTest {
     public void applicationShouldNotDependOnInfrastructure() {
         ArchRule rule = noClasses().that().resideInAPackage(APPLICATION_PACKAGE)
                 .should().dependOnClassesThat().resideInAPackage(INFRAESTRUCTURE_PACKAGE);
+        
         rule.check(importedClasses);
     }
 
@@ -52,7 +53,8 @@ public class HexagonalArchitectureTest {
     public void portsPackageShouldOnlyContainInterfaces() {
         ArchRule rule = classes().that().resideInAPackage(PORTS_PACKAGE)
                 .should().beInterfaces();
-        rule.check(importedClasses);
+        
+         rule.check(importedClasses);
     }
 
     @Test
@@ -77,7 +79,7 @@ public class HexagonalArchitectureTest {
                 "..infraestructure.adapters.in.."
         )
         .should().dependOnClassesThat().resideInAnyPackage("..domain.ports.in..");
-
+        
         rule.check(importedClasses);
     }
 
@@ -89,7 +91,7 @@ public class HexagonalArchitectureTest {
                 "..infraestructure.adapters.out.."
         )
         .should().dependOnClassesThat().resideInAnyPackage("..domain.ports.out..");
-
+        
         rule.check(importedClasses);
     }
     

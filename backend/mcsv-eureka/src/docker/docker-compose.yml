@@ -1,0 +1,13 @@
+services: # Define los servicios que se desplegarán en los contenedores.
+  mcsv-eureka: # Nombre del servicio. 
+    container_name: mcsv-eureka # Nombre personalizado para el contenedor
+    image: servite3it-eureka # Imagen de Docker que se utilizará.
+    ports: # Configuración para mapear puertos del contenedor al host.
+      - "8761:8761" # Mapea el puerto 8761 del contenedor al puerto 8761 del host.
+    networks:
+      - service3it_network # Conectar este servicio a la red backend_network
+
+# Definición de redes
+networks:
+  service3it_network: # Red interna para comunicación entre contenedores
+    external: true  # Indica que la red ya está creada fuera de este archivo
