@@ -1,3 +1,5 @@
+version: '3.8'
+
 services: # Define los servicios que se desplegarán en los contenedores.
   mcsv-eureka: # Nombre del servicio. 
     container_name: mcsv-eureka # Nombre personalizado para el contenedor
