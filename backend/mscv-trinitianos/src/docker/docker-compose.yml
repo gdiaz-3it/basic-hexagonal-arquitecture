@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mcsv-trinitianos:  # Define el servicio "student-service"
     image: service3it-trinitianos  # Imagen Docker que se utilizará para este contenedor
