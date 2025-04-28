@@ -16,7 +16,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/trinitianos")
 @AllArgsConstructor
 public class TrinitianosController {
 
@@ -26,7 +26,7 @@ public class TrinitianosController {
     private final SaveTrinitianosUseCase saveTrinitianos;
     private final UpdateTrinitianoByIdUseCase updateTrinitianoById;
     
-    @GetMapping("/trinitianos")
+    @GetMapping
     public ResponseEntity<List<TrinitianosDTO>> getAllTrinitianos() {
         try {
             List<Trinitianos> trinitianos = getAllTrinitianos.getAllTrinitianos();
@@ -39,7 +39,7 @@ public class TrinitianosController {
         }
     }
 
-    @GetMapping("/trinitianos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<TrinitianosDTO> getTrinitianosById(@PathVariable Long id) {
         Trinitianos trinitianos = getTrinitianosById.getTrinitianosById(id);
         if (trinitianos != null) {
@@ -49,7 +49,7 @@ public class TrinitianosController {
         }   
     }
 
-    @PostMapping("/trinitianos")
+    @PostMapping
     public ResponseEntity<TrinitianosDTO> saveTrinitianos(@Validated @RequestBody TrinitianosDTO trinitianosDTO) {
     Trinitianos domain = TrinitianosDtoToDomainMapper.toDomain(trinitianosDTO);
     Trinitianos saved = saveTrinitianos.saveTrinitianos(domain);
@@ -57,7 +57,7 @@ public class TrinitianosController {
                 .body(TrinitianosDtoToDomainMapper.toDto(saved));
     }
 
-    @DeleteMapping("/trinitianos/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrinitianoById(@PathVariable Long id) {
         try {
             deleteTrinitianoById.deleteTrinitianoById(id);
@@ -69,7 +69,7 @@ public class TrinitianosController {
         }
     }
 
-    @PatchMapping("/trinitianos/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<TrinitianosDTO> updateTrinitianoById(@PathVariable Long id, @Validated @RequestBody TrinitianosDTO trinitianosDTO) {
         try {
             Trinitianos trinitianosDomain = TrinitianosDtoToDomainMapper.toDomain(trinitianosDTO);

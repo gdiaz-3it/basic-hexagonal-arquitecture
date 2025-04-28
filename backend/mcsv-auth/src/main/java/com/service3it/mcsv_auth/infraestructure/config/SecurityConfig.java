@@ -3,24 +3,21 @@ package com.service3it.mcsv_auth.infraestructure.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.web.SecurityFilterChain;
-
-import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @Configuration
-@EnableWebSecurity
-@Slf4j
+@EnableWebFluxSecurity
 public class SecurityConfig {
 
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) throws Exception {
         http
             .csrf(crf -> crf.disable())
             .cors(cors -> cors.disable())
-            .authorizeHttpRequests(authorize -> authorize
-                .anyRequest().authenticated()
+            .authorizeExchange(exchange -> exchange
+                .anyExchange().authenticated()
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
         return http.build();
