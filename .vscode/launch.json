@@ -24,6 +24,16 @@
             "projectName": "mcsv-eureka",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvAuthApplication<mcsv-auth>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_auth.McsvAuthApplication",
+            "projectName": "mcsv-auth",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
         }
     ]
 }
