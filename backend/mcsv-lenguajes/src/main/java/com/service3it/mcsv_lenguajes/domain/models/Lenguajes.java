@@ -1,0 +1,21 @@
+package com.service3it.mcsv_lenguajes.domain.models;
+
+public class Lenguajes {
+
+    private final Long id;
+    private final String nombre;
+
+    public Lenguajes(Long id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+}

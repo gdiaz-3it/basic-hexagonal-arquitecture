@@ -1,4 +1,4 @@
-package com.service3it.mscv_trinitianos.infraestructure.config;
+package com.service3it.mcsv_lenguajes.infraestructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -22,5 +22,4 @@ public class WebConfig {
             }
         };
     }
-
 }

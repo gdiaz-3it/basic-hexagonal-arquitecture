@@ -34,6 +34,21 @@
             "projectName": "mcsv-auth",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvLenguajesApplication<mcsv-lenguajes>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_lenguajes.McsvLenguajesApplication",
+            "projectName": "mcsv-lenguajes",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
+                "SPRING_DATASOURCE_USERNAME": "service3it",
+                "SPRING_DATASOURCE_PASSWORD": "service3it"
+            }
         }
     ]
 }
