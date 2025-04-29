@@ -26,7 +26,7 @@ public class TrinitianosLenguajeEntity {
 
     @ManyToOne
     @JoinColumn(name = "lenguaje_id", referencedColumnName = "id")
-    private Long lenguajeId;
+    private LenguajesEntity lenguajeId;
 
     private String nivel;
 

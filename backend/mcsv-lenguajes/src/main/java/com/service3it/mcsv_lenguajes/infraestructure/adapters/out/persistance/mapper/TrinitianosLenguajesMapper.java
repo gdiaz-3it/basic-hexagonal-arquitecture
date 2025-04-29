@@ -1,22 +1,23 @@
 package com.service3it.mcsv_lenguajes.infraestructure.adapters.out.persistance.mapper;
 
 import com.service3it.mcsv_lenguajes.domain.models.TrinitianosLenguaje;
+import com.service3it.mcsv_lenguajes.infraestructure.adapters.out.persistance.entities.LenguajesEntity;
 import com.service3it.mcsv_lenguajes.infraestructure.adapters.out.persistance.entities.TrinitianosLenguajeEntity;
 
 public class TrinitianosLenguajesMapper {
 
-    public static TrinitianosLenguajeEntity toEntity(TrinitianosLenguaje trinitianosLenguaje) {
+    public static TrinitianosLenguajeEntity toEntity(TrinitianosLenguaje domain, LenguajesEntity lenguajeEntity) {
         return new TrinitianosLenguajeEntity(
-                trinitianosLenguaje.getId(),
-                trinitianosLenguaje.getLenguajeId(),
-                trinitianosLenguaje.getNivel()
+                domain.getId(),
+                lenguajeEntity,
+                domain.getNivel()
         );
     }
 
     public static TrinitianosLenguaje toDomain(TrinitianosLenguajeEntity trinitianosLenguajeEntity) {
         return new TrinitianosLenguaje(
                 trinitianosLenguajeEntity.getId(),
-                trinitianosLenguajeEntity.getLenguajeId(),
+                trinitianosLenguajeEntity.getLenguajeId().getId(),
                 trinitianosLenguajeEntity.getNivel()
         );
     }
