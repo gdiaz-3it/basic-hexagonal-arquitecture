@@ -4,6 +4,6 @@ import com.service3it.mcsv_lenguajes.domain.models.Lenguajes;
 
 public interface UpdateLenguajesByIdUseCase {
 
-    Lenguajes updateTrinitianoById(Long id, Lenguajes lenguajes);
+    Lenguajes updateLenguajesById(Long id, Lenguajes lenguajes);
 
 }

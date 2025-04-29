@@ -4,6 +4,6 @@ import com.service3it.mcsv_lenguajes.domain.models.Lenguajes;
 
 public interface GetLenguajesByIdUseCase {
 
-    Lenguajes getLenguajeById(Long id);
+    Lenguajes getLenguajesById(Long id);
 
 }

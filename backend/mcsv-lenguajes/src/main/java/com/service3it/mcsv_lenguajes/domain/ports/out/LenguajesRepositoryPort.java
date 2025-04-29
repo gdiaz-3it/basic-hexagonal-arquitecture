@@ -8,12 +8,12 @@ public interface LenguajesRepositoryPort {
 
     List<Lenguajes> getAllLenguajes();
 
-    Lenguajes getLenguajeById(Long id);
+    Lenguajes getLenguajesById(Long id);
 
-    Lenguajes saveLenguaje(Lenguajes lenguajes);
+    Lenguajes saveLenguajes(Lenguajes lenguajes);
 
-    Lenguajes updateLenguajeById(Long id, Lenguajes lenguajes);
+    Lenguajes updateLenguajesById(Long id, Lenguajes lenguajes);
 
-    void deleteLenguajeById(Long id);
+    void deleteLenguajesById(Long id);
 
 }
