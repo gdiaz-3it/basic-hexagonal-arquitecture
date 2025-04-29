@@ -18,17 +18,15 @@ import lombok.Setter;
 @Table(name = "trinitianos_lenguajes")
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrinitianosLenguajesEntity {
+public class TrinitianosLenguajeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long trinitianoId;
-
     @ManyToOne
     @JoinColumn(name = "lenguaje_id", referencedColumnName = "id")
-    private LenguajesEntity lenguajeId;
+    private Long lenguajeId;
 
     private String nivel;
 
