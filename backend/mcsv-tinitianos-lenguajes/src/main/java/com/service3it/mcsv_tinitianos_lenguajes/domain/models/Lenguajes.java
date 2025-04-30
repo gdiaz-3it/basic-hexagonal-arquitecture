@@ -1,4 +1,4 @@
-package com.service3it.mcsv_lenguajes.domain.models;
+package com.service3it.mcsv_tinitianos_lenguajes.domain.models;
 
 public class Lenguajes {
 

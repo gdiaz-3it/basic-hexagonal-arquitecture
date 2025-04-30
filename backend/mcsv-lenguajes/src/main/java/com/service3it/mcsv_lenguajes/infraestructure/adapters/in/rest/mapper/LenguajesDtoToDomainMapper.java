@@ -8,15 +8,16 @@ public class LenguajesDtoToDomainMapper {
     public static Lenguajes toDomain(LenguajesDTO lenguajesDTO) {
         return new Lenguajes(
                 lenguajesDTO.getId(),
-                lenguajesDTO.getNombre()
+                lenguajesDTO.getNombre(),
+                lenguajesDTO.getNivel()
         );
     }
 
     public static LenguajesDTO toDto(Lenguajes lenguajes) {
         return new LenguajesDTO(
                 lenguajes.getId(),
-                lenguajes.getNombre()
+                lenguajes.getNombre(),
+                lenguajes.getNivel()
         );
     }
-
 }

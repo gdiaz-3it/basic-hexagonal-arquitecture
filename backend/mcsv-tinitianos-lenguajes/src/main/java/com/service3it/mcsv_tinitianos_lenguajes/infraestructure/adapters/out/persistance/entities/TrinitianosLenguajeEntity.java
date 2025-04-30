@@ -1,4 +1,4 @@
-package com.service3it.mcsv_lenguajes.infraestructure.adapters.out.persistance.entities;
+package com.service3it.mcsv_tinitianos_lenguajes.infraestructure.adapters.out.persistance.entities;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,18 +13,18 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@Table(name = "lenguajes")
+@Table(name = "trinitianos_lenguajes")
 @AllArgsConstructor
 @NoArgsConstructor
-public class LenguajesEntity {
+public class TrinitianosLenguajeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    private String descripcion;
 
-    private String nombre;
 
-    private String nivel;
 
 
 }
