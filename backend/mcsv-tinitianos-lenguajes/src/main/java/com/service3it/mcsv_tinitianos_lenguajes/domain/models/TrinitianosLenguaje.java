@@ -1,6 +1,5 @@
 package com.service3it.mcsv_tinitianos_lenguajes.domain.models;
 
-
 public class TrinitianosLenguaje {
 
     private final Long id;
