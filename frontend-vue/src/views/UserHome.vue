@@ -1,6 +1,6 @@
 <template>
   <div class="home-container">
-    <h1>Lista de Trinitianos</h1>
+    <h1>Lista de tritianos</h1>
 
     <!-- Tabla de estudiantes -->
     <table class="items-table">
@@ -19,25 +19,25 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="trinitianos in paginatedTrinitianos" :key="trinitianos.id">
-          <td>{{ trinitianos.nombre }}</td>
-          <td>{{ trinitianos.apellido }}</td>
-          <td>{{ trinitianos.correoElectronico }}</td>
-          <td>{{ trinitianos.rut }}</td>
-          <td>{{ trinitianos.telefono }}</td>
-          <td>{{ trinitianos.estado }}</td>
-          <td>{{ trinitianos.enlaceBizneo }}</td>
-          <td>{{ trinitianos.enlaceHubspot }}</td>
-          <td>{{ trinitianos.enlaceJira }}</td>
+        <tr v-for="tritianos in paginatedtritianos" :key="tritianos.id">
+          <td>{{ tritianos.nombre }}</td>
+          <td>{{ tritianos.apellido }}</td>
+          <td>{{ tritianos.correoElectronico }}</td>
+          <td>{{ tritianos.rut }}</td>
+          <td>{{ tritianos.telefono }}</td>
+          <td>{{ tritianos.estado }}</td>
+          <td>{{ tritianos.enlaceBizneo }}</td>
+          <td>{{ tritianos.enlaceHubspot }}</td>
+          <td>{{ tritianos.enlaceJira }}</td>
           <td class="actions-container">
-            <button @click="toggleDropdown(trinitianos.id)" class="btn-actions">
+            <button @click="toggleDropdown(tritianos.id)" class="btn-actions">
               Acciones
             </button>
-            <div v-if="openDropdown === trinitianos.id" class="dropdown-menu">
-              <button @click="editTrinitiano(trinitianos)" class="dropdown-item">
+            <div v-if="openDropdown === tritianos.id" class="dropdown-menu">
+              <button @click="edittritiano(tritianos)" class="dropdown-item">
                 Editar
               </button>
-              <button @click="deleteTrinitiano(trinitianos.id)" class="dropdown-item cancel-delete">
+              <button @click="deletetritiano(tritianos.id)" class="dropdown-item cancel-delete">
                 Eliminar
               </button>
             </div>
@@ -46,47 +46,47 @@
       </tbody>
     </table>
 
-    <div v-if="editingTrinitiano" class="form-container">
-      <h2>Editar Trinitiano</h2>
-      <form @submit.prevent="updateTrinitiano">
+    <div v-if="editingtritiano" class="form-container">
+      <h2>Editar tritiano</h2>
+      <form @submit.prevent="updatetritiano">
         <div class="form-field">
           <label for="nombre">Nombre:</label>
-          <input type="text" v-model="editingTrinitiano.nombre" required />
+          <input type="text" v-model="editingtritiano.nombre" required />
         </div>
         <div class="form-field">
           <label for="apellido">Apellido:</label>
-          <input type="text" v-model="editingTrinitiano.apellido" required />
+          <input type="text" v-model="editingtritiano.apellido" required />
         </div>
         <div class="form-field">
           <label for="correo">Correo Electrónico:</label>
-          <input type="email" v-model="editingTrinitiano.correoElectronico" required />
+          <input type="email" v-model="editingtritiano.correoElectronico" required />
         </div>
         <div class="form-field">
           <label for="rut">Rut:</label>
-          <input type="text" v-model="editingTrinitiano.rut" required />
+          <input type="text" v-model="editingtritiano.rut" required />
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono:</label>
-          <input type="text" v-model="editingTrinitiano.telefono" required />
+          <input type="text" v-model="editingtritiano.telefono" required />
         </div>
         <div class="form-field">
           <label for="estado">Estado:</label>
-          <select v-model="editingTrinitiano.estado" required>
+          <select v-model="editingtritiano.estado" required>
             <option value="Activo">Activo</option>
             <option value="Inactivo">Inactivo</option>
           </select>
         </div>
         <div class="form-field">
           <label for="bizneo">Enlace Bizneo:</label>
-          <input type="url" v-model="editingTrinitiano.enlaceBizneo" required />
+          <input type="url" v-model="editingtritiano.enlaceBizneo" required />
         </div>
         <div class="form-field">
           <label for="hubspot">Enlace HubSpot:</label>
-          <input type="url" v-model="editingTrinitiano.enlaceHubspot" required />
+          <input type="url" v-model="editingtritiano.enlaceHubspot" required />
         </div>
         <div class="form-field">
           <label for="hubspot">Enlace Jira:</label>
-          <input type="url" v-model="editingTrinitiano.enlaceJira" required />
+          <input type="url" v-model="editingtritiano.enlaceJira" required />
         </div>
         <div class="button-container">
           <button type="submit">Actualizar</button>
@@ -109,30 +109,30 @@
     <!-- Formulario para agregar estudiante -->
     <div class="form-container">
       <h2>Agregar Tritiano</h2>
-      <form @submit.prevent="addTrinitiano">
+      <form @submit.prevent="addtritiano">
         <div class="form-field">
           <label for="nombre">Nombre:</label>
-          <input type="text" id="name" v-model="newTrinitiano.nombre" required />
+          <input type="text" id="name" v-model="newtritiano.nombre" required />
         </div>
         <div class="form-field">
           <label for="apellido">Apellido:</label>
-          <input type="text" id="apellido" v-model="newTrinitiano.apellido" required />
+          <input type="text" id="apellido" v-model="newtritiano.apellido" required />
         </div>
         <div class="form-field">
           <label for="correo">Correo Electrónico:</label>
-          <input type="email" id="correo" v-model="newTrinitiano.correoElectronico" required />
+          <input type="email" id="correo" v-model="newtritiano.correoElectronico" required />
         </div>
         <div class="form-field">
           <label for="rut">Rut:</label>
-          <input type="text" id="rut" v-model="newTrinitiano.rut" required />
+          <input type="text" id="rut" v-model="newtritiano.rut" required />
         </div>
         <div class="form-field">
           <label for="telefono">Teléfono:</label>
-          <input type="text" id="telefono" v-model="newTrinitiano.telefono" required />
+          <input type="text" id="telefono" v-model="newtritiano.telefono" required />
         </div>
         <div class="form-field">
           <label for="estado">Estado:</label>
-          <select v-model="newTrinitiano.estado" required>
+          <select v-model="newtritiano.estado" required>
             <option value="Activo">Activo</option>
             <option value="Inactivo">Inactivo</option>
             <option value="En Proceso">En Proceso</option>
@@ -140,15 +140,15 @@
         </div>
         <div class="form-field">
           <label for="bizneo">Enlace Bizneo:</label>
-          <input type="url" id="bizneo" v-model="newTrinitiano.enlaceBizneo" required />
+          <input type="url" id="bizneo" v-model="newtritiano.enlaceBizneo" required />
         </div>
         <div class="form-field">
           <label for="hubspot">Enlace Hubspot:</label>
-          <input type="url" id="hubspot" v-model="newTrinitiano.enlaceHubspot" required />
+          <input type="url" id="hubspot" v-model="newtritiano.enlaceHubspot" required />
         </div>
         <div class="form-field">
           <label for="jira">Enlace Jira:</label>
-          <input type="url" id="jira" v-model="newTrinitiano.enlaceJira" required />
+          <input type="url" id="jira" v-model="newtritiano.enlaceJira" required />
         </div>
         <div class="button-container">
           <button type="submit">Agregar Estudiante</button>
@@ -168,9 +168,9 @@ export default {
   name: "UserHome",
   setup() {
     const openDropdown = ref(null);
-    const trinitianos = ref([]);
-    const editingTrinitiano = ref(null);
-    const newTrinitiano = ref({
+    const tritianos = ref([]);
+    const editingtritiano = ref(null);
+    const newtritiano = ref({
       nombre: "",
       apellido: "",
       correoElectronico: "",
@@ -191,28 +191,28 @@ export default {
     };
 
     const cancelEdit = () => {
-      editingTrinitiano.value = null;
+      editingtritiano.value = null;
     };
 
-    const fetchTrinitianos = async () => {
+    const fetchtritianos = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:8081/api/trinitianos",);
-        console.log("Trinitianos recibidos:", response.data);
-        trinitianos.value = response.data;
+          "http://localhost:8081/api/tritianos",);
+        console.log("tritianos recibidos:", response.data);
+        tritianos.value = response.data;
       } catch (error) {
-        console.error("Error al obtener trinitianos:", error);
-        message.value = "Error al cargar los trinitianos.";
+        console.error("Error al obtener tritianos:", error);
+        message.value = "Error al cargar los tritianos.";
         messageType.value = "error";
       }
     };
 
-    const addTrinitiano = async () => {
+    const addtritiano = async () => {
       message.value = "";
       try {
-        const response = await axios.post("http://localhost:8081/api/trinitianos", newTrinitiano.value);
-        trinitianos.value.push(response.data);
-        newTrinitiano.value = {
+        const response = await axios.post("http://localhost:8081/api/tritianos", newtritiano.value);
+        tritianos.value.push(response.data);
+        newtritiano.value = {
           nombre: "",
           apellido: "",
           correoElectronico: "",
@@ -223,63 +223,63 @@ export default {
           enlaceHubspot: "",
           enlaceJira: "",
         };
-        message.value = "Trinitiano agregado con éxito.";
+        message.value = "tritiano agregado con éxito.";
         messageType.value = "success";
 
         setTimeout(() => {
           message.value = "";
         }, 2500);
       } catch (error) {
-        console.error("Error al agregar trinitiano:", error);
-        message.value = "Error al agregar el trinitiano.";
+        console.error("Error al agregar tritiano:", error);
+        message.value = "Error al agregar el tritiano.";
         messageType.value = "error";
       }
     };
 
-    const deleteTrinitiano = async (id) => {
-      if (!confirm("¿Estás seguro de que deseas eliminar este trinitiano?")) return;
+    const deletetritiano = async (id) => {
+      if (!confirm("¿Estás seguro de que deseas eliminar este tritiano?")) return;
 
       try {
-        await axios.delete(`http://localhost:8081/api/trinitianos/${id}`);
-        trinitianos.value = trinitianos.value.filter(t => t.id !== id);
-        message.value = "Trinitiano eliminado correctamente.";
+        await axios.delete(`http://localhost:8081/api/tritianos/${id}`);
+        tritianos.value = tritianos.value.filter(t => t.id !== id);
+        message.value = "tritiano eliminado correctamente.";
         messageType.value = "success";
 
         setTimeout(() => {
           message.value = "";
         }, 2500);
       } catch (error) {
-        console.error("Error al eliminar trinitiano:", error);
-        message.value = "Error al eliminar el trinitiano.";
+        console.error("Error al eliminar tritiano:", error);
+        message.value = "Error al eliminar el tritiano.";
         messageType.value = "error";
       }
     };
 
-    const editTrinitiano = (trinitiano) => {
+    const edittritiano = (tritiano) => {
       openDropdown.value = null;
-      editingTrinitiano.value = { ...trinitiano };
+      editingtritiano.value = { ...tritiano };
     };
 
-    const updateTrinitiano = async () => {
+    const updatetritiano = async () => {
       try {
-        await axios.patch(`http://localhost:8081/api/trinitianos/${editingTrinitiano.value.id}`, editingTrinitiano.value);
-        const index = trinitianos.value.findIndex(t => t.id === editingTrinitiano.value.id);
+        await axios.patch(`http://localhost:8081/api/tritianos/${editingtritiano.value.id}`, editingtritiano.value);
+        const index = tritianos.value.findIndex(t => t.id === editingtritiano.value.id);
         if (index !== -1) {
-          trinitianos.value[index] = { ...editingTrinitiano.value };
+          tritianos.value[index] = { ...editingtritiano.value };
         }
-        editingTrinitiano.value = null;
+        editingtritiano.value = null;
       } catch (error) {
-        console.error("Error al actualizar trinitiano:", error);
+        console.error("Error al actualizar tritiano:", error);
       }
     };
 
     const totalPages = computed(() =>
-      Math.ceil(trinitianos.value.length / elementsPerPage)
+      Math.ceil(tritianos.value.length / elementsPerPage)
     );
 
-    const paginatedTrinitianos = computed(() => {
+    const paginatedtritianos = computed(() => {
       const start = (currentPage.value - 1) * elementsPerPage;
-      return trinitianos.value.slice(start, start + elementsPerPage);
+      return tritianos.value.slice(start, start + elementsPerPage);
     });
 
     const nextPage = () => {
@@ -295,26 +295,26 @@ export default {
     };
 
     onMounted(() => {
-      fetchTrinitianos();
+      fetchtritianos();
     });
 
     return {
       openDropdown,
       toggleDropdown,
       cancelEdit,
-      trinitianos,
-      newTrinitiano,
-      editingTrinitiano,
-      paginatedTrinitianos,
+      tritianos,
+      newtritiano,
+      editingtritiano,
+      paginatedtritianos,
       currentPage,
       totalPages,
       nextPage,
       previousPage,
-      fetchTrinitianos,
-      addTrinitiano,
-      editTrinitiano,
-      updateTrinitiano,
-      deleteTrinitiano,
+      fetchtritianos,
+      addtritiano,
+      edittritiano,
+      updatetritiano,
+      deletetritiano,
       message,
       messageType
     };

@@ -2,11 +2,11 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-MscvTrinitianosApplication<mscv-trinitianos>",
+            "name": "Spring Boot-MscvtritianosApplication<mscv-tritianos>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.service3it.mscv_trinitianos.MscvTrinitianosApplication",
-            "projectName": "mscv-trinitianos",
+            "mainClass": "com.service3it.mscv_tritianos.MscvtritianosApplication",
+            "projectName": "mscv-tritianos",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
             "env": {
@@ -23,7 +23,8 @@
             "mainClass": "com.service3it.mcsv_eureka.McsvEurekaApplication",
             "projectName": "mcsv-eureka",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=63663 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=mcsv-eureka"
         },
         {
             "type": "java",
@@ -52,26 +53,11 @@
         },
         {
             "type": "java",
-            "name": "Spring Boot-McsvTinitianosLenguajesApplication<mcsv-tinitianos-lenguajes>",
+            "name": "Spring Boot-McsvTinitianosLenguajesApplication<mcsv-tritianos-lenguajes>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.service3it.mcsv_tinitianos_lenguajes.McsvTinitianosLenguajesApplication",
-            "projectName": "mcsv-tinitianos-lenguajes",
-            "args": "",
-            "envFile": "${workspaceFolder}/.env",
-            "env": {
-                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
-                "SPRING_DATASOURCE_USERNAME": "service3it",
-                "SPRING_DATASOURCE_PASSWORD": "service3it"
-            }
-        },
-        {
-            "type": "java",
-            "name": "Spring Boot-McsvTrinitianosAplicacionesApplication<mcsv-trinitianos-aplicaciones>",
-            "request": "launch",
-            "cwd": "${workspaceFolder}",
-            "mainClass": "com.service3it.mcsv_trinitianos_aplicaciones.McsvTrinitianosAplicacionesApplication",
-            "projectName": "mcsv-trinitianos-aplicaciones",
+            "mainClass": "com.service3it.mcsv_tritianos_lenguajes.McsvTritianosLenguajesApplication",
+            "projectName": "mcsv-tritianos-lenguajes",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
             "env": {
@@ -87,6 +73,21 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.service3it.mcsv_aplicaciones.McsvAplicacionesApplication",
             "projectName": "mcsv-aplicaciones",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
+                "SPRING_DATASOURCE_USERNAME": "service3it",
+                "SPRING_DATASOURCE_PASSWORD": "service3it"
+            }
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvTritianosAplicacionesApplication<mcsv-tritianos-aplicaciones>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_tritianos_aplicaciones.McsvTritianosAplicacionesApplication",
+            "projectName": "mcsv-tritianos-aplicaciones",
             "args": "",
             "envFile": "${workspaceFolder}/.env",
             "env": {

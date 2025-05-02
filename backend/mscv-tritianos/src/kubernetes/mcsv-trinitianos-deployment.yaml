@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert
+    kompose.version: 1.26.1 (a9d05d509)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: mcsv-tritianos
+  name: mcsv-tritianos
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: mcsv-tritianos
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert
+        kompose.version: 1.26.1 (a9d05d509)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/service3it_network: "true"
+        io.kompose.service: mcsv-tritianos
+    spec:
+      containers:
+        - env:
+            - name: EUREKA_CLIENT_SERVICE_URL
+              value: http://mcsv-eureka:8761/eureka/
+            - name: JAVA_HOME
+              value: /usr/local/openjdk-17
+            - name: JAVA_VERSION
+              value: "17"
+            - name: LANG
+              value: C.UTF-8
+            - name: MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE
+              value: refresh,health
+            - name: PATH
+              value: /usr/local/openjdk-17/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: datasource-secret-tritianos
+                  key: SPRING_DATASOURCE_PASSWORD
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mcsv-db:3306/service3it-data
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: datasource-secret-tritianos
+                  key: SPRING_DATASOURCE_USERNAME
+            - name: SPRING_APPLICATION_NAME
+              value: mcsv-tritianos
+            - name: SERVER_PORT
+              value: "8099"
+            - name: EUREKA_INSTANCE_INSTANCE_ID
+              value: "$(SPRING_APPLICATION_NAME):$(SERVER_PORT)"
+            - name: EUREKA_INSTANCE_HOSTNAME
+              value: "$(SPRING_APPLICATION_NAME)"
+          image: service3it-tritianos:latest
+          name: mcsv-tritianos
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8099
+          resources: {}
+      restartPolicy: Always

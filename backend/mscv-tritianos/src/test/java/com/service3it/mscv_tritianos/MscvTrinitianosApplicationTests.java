@@ -1,0 +1,13 @@
+package com.service3it.mscv_tritianos;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class MscvtritianosApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}

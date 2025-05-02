@@ -11,7 +11,7 @@ public class GatewayConfig {
     @Bean
     public RouteLocator routes(RouteLocatorBuilder builder) {
         return builder.routes()
-            .route("mscv-trinitianos", r -> r.path("/api/trinitianos/**")
+            .route("mscv-tritianos", r -> r.path("/api/tritianos/**")
                 .uri("http://localhost:8081"))
             .route("mcsv-lenguajes", r -> r.path("/api/lenguajes/**")
                 .uri("http://localhost:8082"))
