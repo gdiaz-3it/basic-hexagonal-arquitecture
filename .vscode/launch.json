@@ -64,6 +64,36 @@
                 "SPRING_DATASOURCE_USERNAME": "service3it",
                 "SPRING_DATASOURCE_PASSWORD": "service3it"
             }
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvTrinitianosAplicacionesApplication<mcsv-trinitianos-aplicaciones>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_trinitianos_aplicaciones.McsvTrinitianosAplicacionesApplication",
+            "projectName": "mcsv-trinitianos-aplicaciones",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
+                "SPRING_DATASOURCE_USERNAME": "service3it",
+                "SPRING_DATASOURCE_PASSWORD": "service3it"
+            }
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-McsvAplicacionesApplication<mcsv-aplicaciones>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.service3it.mcsv_aplicaciones.McsvAplicacionesApplication",
+            "projectName": "mcsv-aplicaciones",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "env": {
+                "SPRING_DATASOURCE_URL": "jdbc:mysql://localhost:3306/service3it-data",
+                "SPRING_DATASOURCE_USERNAME": "service3it",
+                "SPRING_DATASOURCE_PASSWORD": "service3it"
+            }
         }
     ]
 }

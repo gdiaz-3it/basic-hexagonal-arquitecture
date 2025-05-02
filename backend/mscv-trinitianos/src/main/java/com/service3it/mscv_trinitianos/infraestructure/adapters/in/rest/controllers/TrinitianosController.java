@@ -9,6 +9,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.service3it.mscv_trinitianos.domain.models.Trinitianos;
 import com.service3it.mscv_trinitianos.domain.ports.in.*;
+import com.service3it.mscv_trinitianos.infraestructure.adapters.in.rest.dto.TrinitianosConTrinitianoAplicacionesDTO;
 import com.service3it.mscv_trinitianos.infraestructure.adapters.in.rest.dto.TrinitianosDTO;
 import com.service3it.mscv_trinitianos.infraestructure.adapters.in.rest.mapper.TrinitianosDtoToDomainMapper;
 
@@ -25,6 +26,7 @@ public class TrinitianosController {
     private final GetTrinitianosByIdUseCase getTrinitianosById;
     private final SaveTrinitianosUseCase saveTrinitianos;
     private final UpdateTrinitianoByIdUseCase updateTrinitianoById;
+    private final GetTrinitianosWithTrinitianoAplicacionesUseCase getTrinitianosWithTrinitianoAplicacionesUseCase;
     
     @GetMapping
     public ResponseEntity<List<TrinitianosDTO>> getAllTrinitianos() {
@@ -84,4 +86,8 @@ public class TrinitianosController {
         }
     }
 
+    @GetMapping("/aplicaciones/all")
+    public List<TrinitianosConTrinitianoAplicacionesDTO> getTrinitianosWithTrinitianoAplicaciones() {
+        return getTrinitianosWithTrinitianoAplicacionesUseCase.getTrinitianosWithTrinitianoAplicacionesUseCase();
+    }
 }
