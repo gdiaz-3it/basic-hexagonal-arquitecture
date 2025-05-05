@@ -13,5 +13,5 @@ public interface TritianosAplicacionesClient {
 
     @GetMapping("/api/tritianos-aplicaciones/cliente/{rut}")
     List<TritianosAplicacionesDto> getTritianosByRut(@PathVariable String rut);
-
+    
 }

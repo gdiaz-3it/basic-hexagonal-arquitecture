@@ -1,5 +1,6 @@
 package com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.out.persistance.entities;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,8 +22,12 @@ public class TritianosLenguajeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "rut")
+    private String rut; 
     
-    private String descripcion;
+    @Column(name = "nivel")
+    private String nivel;
 
 
 

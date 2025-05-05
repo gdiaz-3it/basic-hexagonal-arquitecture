@@ -7,11 +7,11 @@ import com.service3it.mscv_tritianos.domain.ports.in.DeleteTritianoByIdUseCase;
 import com.service3it.mscv_tritianos.domain.ports.out.TritianosRepositoryPort;
 
 @Service
-public class DeletetritianoByIdUseCaseImpl implements DeleteTritianoByIdUseCase {
+public class DeleteTritianoByIdUseCaseImpl implements DeleteTritianoByIdUseCase {
 
     private final TritianosRepositoryPort tritianosRepositoryPort;
 
-    public DeletetritianoByIdUseCaseImpl(TritianosRepositoryPort tritianosRepositoryPort) {
+    public DeleteTritianoByIdUseCaseImpl(TritianosRepositoryPort tritianosRepositoryPort) {
         this.tritianosRepositoryPort = tritianosRepositoryPort;
     }
 

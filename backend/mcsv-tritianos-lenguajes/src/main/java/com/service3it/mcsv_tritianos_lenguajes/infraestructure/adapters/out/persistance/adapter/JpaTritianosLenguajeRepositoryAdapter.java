@@ -1,4 +1,4 @@
-package com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.out.persistance;
+package com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.out.persistance.adapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -56,6 +56,13 @@ public class JpaTritianosLenguajeRepositoryAdapter implements TritianosLenguajeR
                 return TritianosLenguajesMapper.toDomain(savedEntity);
             })
         .orElse(null);
+    }
+
+    @Override
+    public List<TritianosLenguaje> findTritianosLenguajesByRut(String rut) {
+        return tritianosLenguajesRepository.findByRut(rut).stream()
+            .map(TritianosLenguajesMapper::toDomain)
+            .collect(Collectors.toList());
     }
 
 }

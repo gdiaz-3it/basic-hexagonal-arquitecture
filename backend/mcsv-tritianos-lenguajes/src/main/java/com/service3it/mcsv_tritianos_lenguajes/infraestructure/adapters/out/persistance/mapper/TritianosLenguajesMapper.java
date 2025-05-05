@@ -8,20 +8,25 @@ public class TritianosLenguajesMapper {
     public static TritianosLenguajeEntity toEntity(TritianosLenguaje tritianosLenguaje) {
         return new TritianosLenguajeEntity(
                 tritianosLenguaje.getId(),
-                tritianosLenguaje.getDescripcion()
+                tritianosLenguaje.getRut(),
+                tritianosLenguaje.getNivel()
         );
     }
 
     public static TritianosLenguaje toDomain(TritianosLenguajeEntity tritianosLenguajeEntity) {
         return new TritianosLenguaje(
                 tritianosLenguajeEntity.getId(),
-                tritianosLenguajeEntity.getDescripcion()
+                tritianosLenguajeEntity.getRut(),
+                tritianosLenguajeEntity.getNivel()
         );
     }
 
     public static void updateTritianosLenguajeEntityFromDomain(TritianosLenguajeEntity tritianosLenguajeEntity, TritianosLenguaje tritianosLenguaje) {
-        if (tritianosLenguaje.getDescripcion() != null) {
-            tritianosLenguajeEntity.setDescripcion(tritianosLenguaje.getDescripcion());
+        if (tritianosLenguaje.getRut() != null) {
+            tritianosLenguajeEntity.setRut(tritianosLenguaje.getRut());
+        }
+        if (tritianosLenguaje.getNivel() != null) {
+            tritianosLenguajeEntity.setNivel(tritianosLenguaje.getNivel());
         }
     }
 

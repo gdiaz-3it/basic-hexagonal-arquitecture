@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TritianosConTritianoAplicacionesDTO {
+public class TritianosConTritianosLenguajesDTO {
 
     private Long id;
     private String nombre;
@@ -21,6 +21,6 @@ public class TritianosConTritianoAplicacionesDTO {
     private String enlaceBizneo;
     private String enlaceHubspot;
     private String enlaceJira;
-    private List<TritianosAplicacionesDto> aplicaciones;
+    private List<TritianosLenguajesDto> lenguajes;
 
 }

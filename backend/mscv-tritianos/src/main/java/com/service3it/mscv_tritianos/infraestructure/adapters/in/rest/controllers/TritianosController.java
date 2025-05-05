@@ -9,9 +9,14 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import com.service3it.mscv_tritianos.domain.models.Tritianos;
+import com.service3it.mscv_tritianos.domain.models.TritianosConTritianosAplicaciones;
+import com.service3it.mscv_tritianos.domain.models.TritianosConTritianosLenguajes;
 import com.service3it.mscv_tritianos.domain.ports.in.*;
 import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.TritianosConTritianoAplicacionesDTO;
+import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.TritianosConTritianosLenguajesDTO;
 import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.TritianosDTO;
+import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.mapper.TritianosConTritianosAplicacionesDtoToDomainMapper;
+import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.mapper.TritianosConTritianosLenguajesDtoToDomainMapper;
 import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.mapper.TritianosDtoToDomainMapper;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -28,6 +33,7 @@ public class TritianosController {
     private final SaveTritianosUseCase savetritianos;
     private final UpdateTritianoByIdUseCase updatetritianoById;
     private final GetTritianosWithTritianoAplicacionesUseCase gettritianosWithtritianoAplicacionesUseCase;
+    private final GetTritianosWithTritianoLenguajesUseCase gettritianosWithtritianoLenguajesUseCase;
     
     @GetMapping
     public ResponseEntity<List<TritianosDTO>> getAlltritianos() {
@@ -88,7 +94,26 @@ public class TritianosController {
     }
 
     @GetMapping("/aplicaciones/all")
-    public List<TritianosConTritianoAplicacionesDTO> getTritianosWithTritianoAplicaciones() {
-        return gettritianosWithtritianoAplicacionesUseCase.getTritianosWithTritianoAplicacionesUseCase();
+    public ResponseEntity<List<TritianosConTritianoAplicacionesDTO>> getTritianosWithTritianoAplicaciones() {
+            List<TritianosConTritianosAplicaciones> domainList = 
+                gettritianosWithtritianoAplicacionesUseCase.getTritianosWithTritianoAplicacionesUseCase();
+
+            List<TritianosConTritianoAplicacionesDTO> dtoList = domainList.stream()
+                .map(TritianosConTritianosAplicacionesDtoToDomainMapper::toDto)
+                .collect(Collectors.toList());
+
+            return ResponseEntity.ok(dtoList);
+    }
+
+    @GetMapping("/lenguajes/all")
+    public ResponseEntity<List<TritianosConTritianosLenguajesDTO>> getTritianosWithTritianoLenguajes() {
+        List<TritianosConTritianosLenguajes> domainList = 
+            gettritianosWithtritianoLenguajesUseCase.getTritianosWithTritianoLenguajesUseCase();
+
+        List<TritianosConTritianosLenguajesDTO> dtoList = domainList.stream()
+            .map(TritianosConTritianosLenguajesDtoToDomainMapper::toDto)
+            .collect(Collectors.toList());
+
+        return ResponseEntity.ok(dtoList);
     }
 }

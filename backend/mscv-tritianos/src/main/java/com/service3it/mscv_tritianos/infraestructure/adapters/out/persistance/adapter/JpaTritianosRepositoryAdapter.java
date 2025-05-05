@@ -1,4 +1,4 @@
-package com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance;
+package com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.adapter;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,11 +12,11 @@ import com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.ma
 import com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.repositories.TritianosRepository;
 
 @Component
-public class JpatritianosRepositoryAdapter implements TritianosRepositoryPort {
+public class JpaTritianosRepositoryAdapter implements TritianosRepositoryPort {
 
     private final TritianosRepository tritianosRepository;
 
-    public JpatritianosRepositoryAdapter(TritianosRepository tritianosRepository) {
+    public JpaTritianosRepositoryAdapter(TritianosRepository tritianosRepository) {
         this.tritianosRepository = tritianosRepository;
     }
 

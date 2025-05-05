@@ -1,17 +1,17 @@
-package com.service3it.mcsv_tritianos_lenguajes.domain.models;
+package com.service3it.mscv_tritianos.domain.models;
 
-public class TritianosLenguaje {
+public class TritianosAplicaciones {
 
     private final Long id;
     private final String rut;
     private final String nivel;
 
-    public TritianosLenguaje(Long id, String rut, String nivel) {
+    public TritianosAplicaciones(Long id, String rut, String nivel) {
         this.id = id;
         this.rut = rut;
         this.nivel = nivel;
     }
-
+    
     public Long getId() {
         return id;
     }
@@ -21,7 +21,7 @@ public class TritianosLenguaje {
     }
 
     public String getNivel() {
-        return nivel ;
+        return nivel;
     }
 
 }

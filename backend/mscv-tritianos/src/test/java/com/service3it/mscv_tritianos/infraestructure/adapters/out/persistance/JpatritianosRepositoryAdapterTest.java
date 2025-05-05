@@ -20,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import com.service3it.mscv_tritianos.domain.models.Tritianos;
+import com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.adapter.JpaTritianosRepositoryAdapter;
 import com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.entities.TritianosEntity;
 import com.service3it.mscv_tritianos.infraestructure.adapters.out.persistance.repositories.TritianosRepository;
 
@@ -29,7 +30,7 @@ public class JpatritianosRepositoryAdapterTest {
     private TritianosRepository tritianosRepository;
 
     @InjectMocks
-    private JpatritianosRepositoryAdapter adapter;
+    private JpaTritianosRepositoryAdapter adapter;
 
     @BeforeEach
     void setUp() {

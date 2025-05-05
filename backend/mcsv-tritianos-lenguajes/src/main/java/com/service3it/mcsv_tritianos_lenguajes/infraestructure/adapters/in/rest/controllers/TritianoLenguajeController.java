@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service3it.mcsv_tritianos_lenguajes.domain.models.TritianosLenguaje;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.DeleteTritianosLenguajeByIdUseCase;
+import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.FindTritianosLenguajeByRutUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetAllTritianosLenguajeUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetTritianosLenguajeByIdUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.SaveTritianosLenguajeUseCase;
@@ -36,6 +37,7 @@ public class TritianoLenguajeController {
     private final GetTritianosLenguajeByIdUseCase gettritianosLenguajeByIdUseCase;
     private final GetAllTritianosLenguajeUseCase getAlltritianosLenguajeUseCase;
     private final UpdateTritianosLenguajeByIdUseCase updatetritianosLenguajeByIdUseCase;
+    private final FindTritianosLenguajeByRutUseCase findTritianosLenguajeByRutUseCase;
 
     @GetMapping
     public ResponseEntity<List<TritianosLenguajeDTO>> getAllTritianosLenguaje() {
@@ -93,5 +95,14 @@ public class TritianoLenguajeController {
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
+    }
+
+    @GetMapping("/cliente/{rut}")
+    public ResponseEntity<List<TritianosLenguajeDTO>> findTritianosLenguajesByRut(@PathVariable String rut) {
+        List<TritianosLenguaje> tritianosLenguajes = findTritianosLenguajeByRutUseCase.findTritianosLenguajesByRut(rut);
+        List<TritianosLenguajeDTO> tritianosLenguajesDTO = tritianosLenguajes.stream()
+                .map(TritianosLenguajeDtoToDomainMapper::toDto)
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(tritianosLenguajesDTO);
     }
 }   
