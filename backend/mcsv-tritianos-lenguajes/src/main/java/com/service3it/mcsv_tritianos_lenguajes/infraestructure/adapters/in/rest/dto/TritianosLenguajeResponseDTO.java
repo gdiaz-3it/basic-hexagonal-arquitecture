@@ -7,11 +7,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TritianosLenguajeDTO {
+public class TritianosLenguajeResponseDTO {
 
     private Long id;
     private String nivel;
     private String lenguaje;
-    private Long clienteId;
 
 }

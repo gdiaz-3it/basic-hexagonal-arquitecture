@@ -35,6 +35,18 @@ public class JpaTritianosWithTritianosAplicacionesRepositoryAdapter implements T
             .collect(Collectors.toList());
     }
 
+    @Override
+    public List<TritianosConTritianosAplicaciones> getTritianosWithTritianoAplicacionesUseCaseById(Long id) {
+        return tritianosRepositoryPort.getAllTritianos().stream()
+            .map(tritiano -> {
+                List<TritianosAplicaciones> aplicaciones = 
+                    tritianosAplicacionesRepositoryPort.findAplicacionesById(tritiano.getId());
+
+                return TritianosWithTritianosAplicacionesMapper.map(tritiano, aplicaciones);
+            })
+            .collect(Collectors.toList());
+    }
+
 
 
     

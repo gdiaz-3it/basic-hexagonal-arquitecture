@@ -6,22 +6,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.service3it.mcsv_tritianos_lenguajes.domain.models.TritianosLenguaje;
-import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.FindTritianosLenguajeByRutUseCase;
+import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetTritianosLenguajeByClienteIdUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.out.TritianosLenguajeRepositoryPort;
 
 @Service
-public class FindTritianosLenguajeByRutUseImpl implements FindTritianosLenguajeByRutUseCase {
+public class GetTritianosLenguajeByClienteIdUseCaseImpl implements GetTritianosLenguajeByClienteIdUseCase {
 
     private final TritianosLenguajeRepositoryPort tritianosLenguajeRepositoryPort;
 
-    public FindTritianosLenguajeByRutUseImpl(TritianosLenguajeRepositoryPort tritianosLenguajeRepositoryPort) {
+    public GetTritianosLenguajeByClienteIdUseCaseImpl(TritianosLenguajeRepositoryPort tritianosLenguajeRepositoryPort) {
         this.tritianosLenguajeRepositoryPort = tritianosLenguajeRepositoryPort;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public List<TritianosLenguaje> findTritianosLenguajesByRut(String rut) {
-        return tritianosLenguajeRepositoryPort.findTritianosLenguajesByRut(rut);
+    public List<TritianosLenguaje> getTritianosLenguajesByClienteId(Long clienteId) {
+        return tritianosLenguajeRepositoryPort.getTritianosLenguajesByClienteId(clienteId);
     }
 
 

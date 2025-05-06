@@ -22,12 +22,15 @@ public class TritianosLenguajeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(name = "rut")
-    private String rut; 
     
     @Column(name = "nivel")
     private String nivel;
+
+    @Column(name = "lenguaje")
+    private String lenguaje;
+
+    @Column(name = "cliente_id")
+    private Long clienteId;
 
 
 

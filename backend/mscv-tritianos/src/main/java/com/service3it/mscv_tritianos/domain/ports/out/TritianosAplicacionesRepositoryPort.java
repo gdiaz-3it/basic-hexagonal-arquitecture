@@ -8,4 +8,6 @@ public interface TritianosAplicacionesRepositoryPort {
 
     List<TritianosAplicaciones> findAplicacionesByRut(String rut);
 
+    List<TritianosAplicaciones> findAplicacionesById(Long id);
+
 }

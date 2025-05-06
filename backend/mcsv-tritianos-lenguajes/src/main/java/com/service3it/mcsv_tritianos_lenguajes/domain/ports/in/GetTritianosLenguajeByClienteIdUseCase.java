@@ -4,8 +4,8 @@ import java.util.List;
 
 import com.service3it.mcsv_tritianos_lenguajes.domain.models.TritianosLenguaje;
 
-public interface FindTritianosLenguajeByRutUseCase {
+public interface GetTritianosLenguajeByClienteIdUseCase {
 
-    List <TritianosLenguaje> findTritianosLenguajesByRut(String rut);
+    List <TritianosLenguaje> getTritianosLenguajesByClienteId(Long clienteId);
 
 }

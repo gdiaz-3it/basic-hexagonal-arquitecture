@@ -59,8 +59,8 @@ public class JpaTritianosLenguajeRepositoryAdapter implements TritianosLenguajeR
     }
 
     @Override
-    public List<TritianosLenguaje> findTritianosLenguajesByRut(String rut) {
-        return tritianosLenguajesRepository.findByRut(rut).stream()
+    public List<TritianosLenguaje> getTritianosLenguajesByClienteId(Long clienteId) {
+        return tritianosLenguajesRepository.findByClienteId(clienteId).stream()
             .map(TritianosLenguajesMapper::toDomain)
             .collect(Collectors.toList());
     }

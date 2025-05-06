@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 public class TritianosAplicacionesDto {
 
     private Long id;
-    private String rut;
     private String nivel;
+    private String aplicacion;
 
 }

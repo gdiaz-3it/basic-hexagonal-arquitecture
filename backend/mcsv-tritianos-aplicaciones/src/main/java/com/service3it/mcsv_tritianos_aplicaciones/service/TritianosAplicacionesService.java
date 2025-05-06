@@ -2,7 +2,6 @@ package com.service3it.mcsv_tritianos_aplicaciones.service;
 
 import java.util.List;
 
-import com.service3it.mcsv_tritianos_aplicaciones.dto.TritianosAplicacionesDto;
 import com.service3it.mcsv_tritianos_aplicaciones.model.TritianosAplicacionesEntity;
 
 
@@ -14,10 +13,6 @@ public interface TritianosAplicacionesService {
 
     TritianosAplicacionesEntity save(TritianosAplicacionesEntity tritianosAplicacionesEntity);
 
-    List<TritianosAplicacionesDto> findAllTritianosAplicacionesWithAplicaciones();
-
-    List<TritianosAplicacionesDto> findAllTritianosAplicacionesWithAplicacionByNivel(String nivel);
-
-    List<TritianosAplicacionesEntity> findByRut(String rut);
+    List<TritianosAplicacionesEntity> getAplicacionesByClienteId(Long clienteId);
 
 }

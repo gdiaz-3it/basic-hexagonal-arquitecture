@@ -8,16 +8,18 @@ public class TritianosLenguajeDtoToDomainMapper {
     public static TritianosLenguaje toDomain(TritianosLenguajeDTO tritianosLenguajeDTO) {
         return new TritianosLenguaje(
                 tritianosLenguajeDTO.getId(),
-                tritianosLenguajeDTO.getRut(),
-                tritianosLenguajeDTO.getNivel()
+                tritianosLenguajeDTO.getNivel(),
+                tritianosLenguajeDTO.getLenguaje(),
+                tritianosLenguajeDTO.getClienteId()
         );
     }
 
     public static TritianosLenguajeDTO toDto(TritianosLenguaje tritianosLenguaje) {
         return new TritianosLenguajeDTO(
                 tritianosLenguaje.getId(),
-                tritianosLenguaje.getRut(),
-                tritianosLenguaje.getNivel()
+                tritianosLenguaje.getNivel(),
+                tritianosLenguaje.getLenguaje(),
+                tritianosLenguaje.getClienteId()
         );
     }
 

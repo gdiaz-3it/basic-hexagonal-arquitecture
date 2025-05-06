@@ -15,10 +15,10 @@ public class TritianosWithTritianosAplicacionesMapper {
 
         return new TritianosConTritianosAplicaciones(
             tritiano.getId(),
-            tritiano.getRut(),
             tritiano.getNombre(),
             tritiano.getApellido(),
             tritiano.getCorreoElectronico(),
+            tritiano.getRut(),
             tritiano.getTelefono(),
             tritiano.getEstado(),
             tritiano.getEnlaceBizneo(),

@@ -17,7 +17,10 @@ public class SecurityConfig {
             .csrf(crf -> crf.disable())
             .cors(cors -> cors.disable())
             .authorizeExchange(exchange -> exchange
+                .pathMatchers("/api/auth/public").permitAll()
                 .anyExchange().authenticated()
+
+
             )
             .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
         return http.build();

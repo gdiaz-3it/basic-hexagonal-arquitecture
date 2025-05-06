@@ -33,7 +33,8 @@ public class TritianosController {
     private final SaveTritianosUseCase savetritianos;
     private final UpdateTritianoByIdUseCase updatetritianoById;
     private final GetTritianosWithTritianoAplicacionesUseCase gettritianosWithtritianoAplicacionesUseCase;
-    private final GetTritianosWithTritianoLenguajesUseCase gettritianosWithtritianoLenguajesUseCase;
+    private final GetTritianosWithTritianoAplicacionByIdUseCase gettritianosWithtritianoAplicacionesByIdUseCase;
+    private final GetTritianosWithTritianoLenguajesByIdUseCase gettritianosWithtritianoLenguajesByIdUseCase;
     
     @GetMapping
     public ResponseEntity<List<TritianosDTO>> getAlltritianos() {
@@ -93,7 +94,19 @@ public class TritianosController {
         }
     }
 
-    @GetMapping("/aplicaciones/all")
+    @GetMapping("/aplicaciones/{id}")
+    public ResponseEntity<List<TritianosConTritianoAplicacionesDTO>> getTritianosWithTritianoAplicacionesById(@PathVariable Long id) {
+            List<TritianosConTritianosAplicaciones> domainList = 
+            gettritianosWithtritianoAplicacionesByIdUseCase.getTritianosWithTritianoAplicacionesUseCaseById(id);
+
+            List<TritianosConTritianoAplicacionesDTO> dtoList = domainList.stream()
+                .map(TritianosConTritianosAplicacionesDtoToDomainMapper::toDto)
+                .collect(Collectors.toList());
+
+            return ResponseEntity.ok(dtoList);
+    }
+
+    @GetMapping("/aplicaciones/rut")
     public ResponseEntity<List<TritianosConTritianoAplicacionesDTO>> getTritianosWithTritianoAplicaciones() {
             List<TritianosConTritianosAplicaciones> domainList = 
                 gettritianosWithtritianoAplicacionesUseCase.getTritianosWithTritianoAplicacionesUseCase();
@@ -105,10 +118,10 @@ public class TritianosController {
             return ResponseEntity.ok(dtoList);
     }
 
-    @GetMapping("/lenguajes/all")
-    public ResponseEntity<List<TritianosConTritianosLenguajesDTO>> getTritianosWithTritianoLenguajes() {
+    @GetMapping("/lenguajes/{id}")
+    public ResponseEntity<List<TritianosConTritianosLenguajesDTO>> getTritianosWithTritianoLenguajesById(@PathVariable Long id) {
         List<TritianosConTritianosLenguajes> domainList = 
-            gettritianosWithtritianoLenguajesUseCase.getTritianosWithTritianoLenguajesUseCase();
+            gettritianosWithtritianoLenguajesByIdUseCase.getTritianosWithTritianoLenguajesById(id);
 
         List<TritianosConTritianosLenguajesDTO> dtoList = domainList.stream()
             .map(TritianosConTritianosLenguajesDtoToDomainMapper::toDto)

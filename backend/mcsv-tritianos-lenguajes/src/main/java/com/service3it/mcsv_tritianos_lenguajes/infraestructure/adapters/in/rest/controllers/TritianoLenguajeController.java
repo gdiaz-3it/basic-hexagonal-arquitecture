@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.service3it.mcsv_tritianos_lenguajes.domain.models.TritianosLenguaje;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.DeleteTritianosLenguajeByIdUseCase;
-import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.FindTritianosLenguajeByRutUseCase;
+import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetTritianosLenguajeByClienteIdUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetAllTritianosLenguajeUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.GetTritianosLenguajeByIdUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.SaveTritianosLenguajeUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.domain.ports.in.UpdateTritianosLenguajeByIdUseCase;
 import com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.in.rest.dto.TritianosLenguajeDTO;
+import com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.in.rest.dto.TritianosLenguajeResponseDTO;
 import com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.in.rest.mapper.TritianosLenguajeDtoToDomainMapper;
+import com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.out.persistance.mapper.TritianosLenguajesMapper;
 
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
@@ -37,7 +39,7 @@ public class TritianoLenguajeController {
     private final GetTritianosLenguajeByIdUseCase gettritianosLenguajeByIdUseCase;
     private final GetAllTritianosLenguajeUseCase getAlltritianosLenguajeUseCase;
     private final UpdateTritianosLenguajeByIdUseCase updatetritianosLenguajeByIdUseCase;
-    private final FindTritianosLenguajeByRutUseCase findTritianosLenguajeByRutUseCase;
+    private final GetTritianosLenguajeByClienteIdUseCase getTritianosLenguajeByIdUseCase;
 
     @GetMapping
     public ResponseEntity<List<TritianosLenguajeDTO>> getAllTritianosLenguaje() {
@@ -63,11 +65,11 @@ public class TritianoLenguajeController {
     }
 
     @PostMapping
-    public ResponseEntity<TritianosLenguajeDTO> saveTritianosLenguaje(@RequestBody TritianosLenguajeDTO tritianosLenguajeDTO) {
+    public ResponseEntity<TritianosLenguajeResponseDTO> saveTritianosLenguaje(@RequestBody TritianosLenguajeDTO tritianosLenguajeDTO) {
         TritianosLenguaje tritianosLenguaje = TritianosLenguajeDtoToDomainMapper.toDomain(tritianosLenguajeDTO);
         TritianosLenguaje savedtritianosLenguaje = savetritianosLenguajeUseCase.saveTritianosLenguaje(tritianosLenguaje);
-            return ResponseEntity.status(HttpStatus.CREATED)
-                    .body(TritianosLenguajeDtoToDomainMapper.toDto(savedtritianosLenguaje));
+        TritianosLenguajeResponseDTO responseDTO = TritianosLenguajesMapper.toResponseDto(savedtritianosLenguaje);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
     @DeleteMapping("/{id}")
@@ -97,12 +99,13 @@ public class TritianoLenguajeController {
         }
     }
 
-    @GetMapping("/cliente/{rut}")
-    public ResponseEntity<List<TritianosLenguajeDTO>> findTritianosLenguajesByRut(@PathVariable String rut) {
-        List<TritianosLenguaje> tritianosLenguajes = findTritianosLenguajeByRutUseCase.findTritianosLenguajesByRut(rut);
-        List<TritianosLenguajeDTO> tritianosLenguajesDTO = tritianosLenguajes.stream()
-                .map(TritianosLenguajeDtoToDomainMapper::toDto)
+    @GetMapping("/cliente/id/{id}")
+    public ResponseEntity<List<TritianosLenguajeResponseDTO>> getTritianosLenguajesByClienteyId(@PathVariable Long id) {
+        List<TritianosLenguaje> tritianosLenguajes = getTritianosLenguajeByIdUseCase.getTritianosLenguajesByClienteId(id);
+        List<TritianosLenguajeResponseDTO> tritianosLenguajesDTO = tritianosLenguajes.stream()
+                .map(TritianosLenguajesMapper::toResponseDto)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(tritianosLenguajesDTO);
+
     }
 }   

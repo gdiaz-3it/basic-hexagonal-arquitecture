@@ -8,6 +8,6 @@ import com.service3it.mcsv_tritianos_lenguajes.infraestructure.adapters.out.pers
 
 public interface TritianosLenguajesRepository extends JpaRepository<TritianosLenguajeEntity, Long> {
 
-    List<TritianosLenguajeEntity> findByRut(String rut);
+    List<TritianosLenguajeEntity> findByClienteId(Long clienteId);
 
 }

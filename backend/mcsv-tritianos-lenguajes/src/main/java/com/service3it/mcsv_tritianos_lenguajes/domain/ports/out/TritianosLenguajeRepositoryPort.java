@@ -16,6 +16,6 @@ public interface TritianosLenguajeRepositoryPort {
 
     void deleteTritianosLenguajeById(Long id);
 
-    List<TritianosLenguaje> findTritianosLenguajesByRut(String rut);
+    List<TritianosLenguaje> getTritianosLenguajesByClienteId(Long clienteId);
 
 }

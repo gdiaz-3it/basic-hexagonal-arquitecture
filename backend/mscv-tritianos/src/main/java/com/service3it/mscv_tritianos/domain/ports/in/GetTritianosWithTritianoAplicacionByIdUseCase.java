@@ -1,12 +1,10 @@
-package com.service3it.mscv_tritianos.domain.ports.out;
+package com.service3it.mscv_tritianos.domain.ports.in;
 
 import java.util.List;
 
 import com.service3it.mscv_tritianos.domain.models.TritianosConTritianosAplicaciones;
 
-public interface TritianosConTritianosAplicacionesRepositoryPort {
-
-    List<TritianosConTritianosAplicaciones> getTritianosWithTritianoAplicacionesUseCase();
+public interface GetTritianosWithTritianoAplicacionByIdUseCase {
 
     List<TritianosConTritianosAplicaciones> getTritianosWithTritianoAplicacionesUseCaseById(Long id);
 

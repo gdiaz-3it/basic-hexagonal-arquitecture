@@ -26,4 +26,10 @@ public class FeignTritianosAplicacionesAdapter implements TritianosAplicacionesR
                 .collect(Collectors.toList());    
     }
 
+    public List<TritianosAplicaciones> findAplicacionesById(Long id) {
+        return tritianosAplicacionesClient.getTritianosById(id).stream()
+                .map(TritianosAplicacionesMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 }

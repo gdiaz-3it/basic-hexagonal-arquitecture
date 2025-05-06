@@ -29,4 +29,11 @@ public class AuthController {
         return Mono.just(response);
     }
 
+    @GetMapping("/public")
+    public Mono<Map<String, Object>> publicEndpoint() {
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "This is a public endpoint. No authentication required.");
+        return Mono.just(response);
+    }  
+
 }

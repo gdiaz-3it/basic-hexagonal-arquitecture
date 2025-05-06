@@ -14,4 +14,7 @@ public interface TritianosLenguajesClient {
     @GetMapping("/api/tritianos-lenguajes/cliente/{rut}")
     List<TritianosLenguajesDto> getTritianosByRut(@PathVariable String rut);
 
+    @GetMapping("/api/tritianos-lenguajes/cliente/id/{id}")
+    List<TritianosLenguajesDto> getTritianosById(@PathVariable Long id);
+
 }

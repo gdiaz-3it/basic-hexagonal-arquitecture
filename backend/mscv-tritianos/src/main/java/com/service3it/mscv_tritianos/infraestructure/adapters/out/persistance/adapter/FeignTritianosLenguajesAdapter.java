@@ -26,4 +26,11 @@ public class FeignTritianosLenguajesAdapter implements TritianosLenguajesReposit
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<TritianosLenguajes> findLenguajesById(Long id) {
+        return tritianosLenguajesClient.getTritianosById(id).stream()
+                .map(TritianosLenguajesMapper::toDomain)
+                .collect(Collectors.toList());
+    }
+
 }

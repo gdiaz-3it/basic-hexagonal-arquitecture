@@ -8,8 +8,11 @@ public class TritianosAplicacionesMapper {
     public static TritianosAplicaciones toDomain(TritianosAplicacionesDto tritianosAplicacionesDto) {
         return new TritianosAplicaciones(
                 tritianosAplicacionesDto.getId(),
-                tritianosAplicacionesDto.getRut(),
-                tritianosAplicacionesDto.getNivel()
+                null,
+                tritianosAplicacionesDto.getNivel(),
+                tritianosAplicacionesDto.getAplicacion(),
+                null
+
         );
     }
 

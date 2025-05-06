@@ -8,4 +8,6 @@ public interface TritianosLenguajesRepositoryPort {
 
     List<TritianosLenguajes> findLenguajesByRut(String rut);
 
+    List<TritianosLenguajes> findLenguajesById(Long id);
+
 }

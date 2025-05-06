@@ -11,6 +11,6 @@ public interface TritianosAplicacionesRepository extends JpaRepository<Tritianos
 
     List<TritianosAplicacionesEntity> findByNivel(String nivel);
 
-    List<TritianosAplicacionesEntity> findByRut(String rut);
+    List<TritianosAplicacionesEntity> findByClienteId(Long clienteId);
 
 }

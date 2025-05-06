@@ -12,7 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.service3it.mcsv_tritianos_aplicaciones.dto.TritianosAplicacionesDto;
+import com.service3it.mcsv_tritianos_aplicaciones.dto.TritianosAplicacionesResponseDto;
+import com.service3it.mcsv_tritianos_aplicaciones.mapper.TritianosAplicacionesMapper;
 import com.service3it.mcsv_tritianos_aplicaciones.model.TritianosAplicacionesEntity;
 import com.service3it.mcsv_tritianos_aplicaciones.service.TritianosAplicacionesService;
 
@@ -48,35 +49,14 @@ public class TritianosAplicacionesController {
         TritianosAplicacionesEntity nuevatritianosAplicaciones = tritianosAplicacionesService.save(tritianosAplicaciones);
         return ResponseEntity.status(HttpStatus.CREATED).body(nuevatritianosAplicaciones);
     }
-    
-    //Endpoint tritianosAplicaciones con Aplicaciones
-    @GetMapping("/aplicaciones/all-with-aplicaciones")
-    public ResponseEntity<List<TritianosAplicacionesDto>> findAllTritianosAplicacionesWithAplicaciones() {
-        return ResponseEntity.ok(tritianosAplicacionesService.findAllTritianosAplicacionesWithAplicaciones());
-    }
 
-    @GetMapping("/aplicaciones/{nivel}")
-    public ResponseEntity<List<TritianosAplicacionesDto>> findAllTritianosAplicacionesWithAplicacionByNivel(@PathVariable String nivel) {
-        return ResponseEntity.ok(tritianosAplicacionesService.findAllTritianosAplicacionesWithAplicacionByNivel(nivel));
-    }
-
-    @GetMapping("/cliente/{rut}")
-    public ResponseEntity<List<TritianosAplicacionesDto>> findByRut(@PathVariable String rut) {
-        List<TritianosAplicacionesEntity> aplicaciones = tritianosAplicacionesService.findByRut(rut);
-        if (aplicaciones.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        // Convertir las entidades a DTOs
-        List<TritianosAplicacionesDto> aplicacionesDtos = aplicaciones.stream()
-            .map(entity -> new TritianosAplicacionesDto(
-                    entity.getId(),
-                    entity.getRut(),
-                    entity.getNivel(),
-                    null // Si necesitas incluir aplicaciones, puedes agregar lógica aquí
-            ))
+    @GetMapping("/cliente/id/{id}")
+    public ResponseEntity<List<TritianosAplicacionesResponseDto>> getAplicacionesByClienteId(@PathVariable Long id) {
+        List<TritianosAplicacionesEntity> aplicaciones = tritianosAplicacionesService.getAplicacionesByClienteId(id);
+        List<TritianosAplicacionesResponseDto> response = aplicaciones.stream()
+            .map(TritianosAplicacionesMapper::toResponseDto)
             .collect(Collectors.toList());
-
-        return ResponseEntity.ok(aplicacionesDtos);
+        return ResponseEntity.ok(response);
     }
     
 }

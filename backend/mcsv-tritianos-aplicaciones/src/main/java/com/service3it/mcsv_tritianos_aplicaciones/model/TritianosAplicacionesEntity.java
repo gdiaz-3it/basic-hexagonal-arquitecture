@@ -24,9 +24,12 @@ public class TritianosAplicacionesEntity {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "rut")
-    private String rut; 
-
     @Column(name = "nivel")
     private String nivel;
+
+    @Column(name = "aplicacion")
+    private String aplicacion;
+
+    @Column(name = "cliente_id")
+    private Long clienteId;
 }

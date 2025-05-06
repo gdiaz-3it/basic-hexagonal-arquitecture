@@ -15,11 +15,11 @@ public class GatewayConfig {
                 .uri("http://localhost:8081"))
             .route("mcsv-lenguajes", r -> r.path("/api/lenguajes/**")
                 .uri("http://localhost:8082"))
-            .route("mcsv-tritianos-lenguajes", r -> r.path("/api/trinitianos-lenguajes/**")
+            .route("mcsv-tritianos-lenguajes", r -> r.path("/api/tritianos-lenguajes/**")
                 .uri("http://localhost:8083"))
             .route("mcsv-aplicaciones", r -> r.path("/api/aplicaciones/**")
                 .uri("http://localhost:8084"))
-            .route("mcsv-trinitianos-aplicaciones", r -> r.path("/api/trinitianos-aplicaciones/**")
+            .route("mcsv-tritianos-aplicaciones", r -> r.path("/api/tritianos-aplicaciones/**")
                 .uri("http://localhost:8085"))
             .build();
     }

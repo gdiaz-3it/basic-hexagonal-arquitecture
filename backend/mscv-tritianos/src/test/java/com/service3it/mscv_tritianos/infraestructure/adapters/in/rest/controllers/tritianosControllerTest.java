@@ -8,7 +8,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.service3it.mscv_tritianos.domain.models.Tritianos;
-import com.service3it.mscv_tritianos.domain.ports.in.*;
+import com.service3it.mscv_tritianos.domain.ports.in.DeleteTritianoByIdUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.GetAllTritianosUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosByIdUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoAplicacionByIdUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoAplicacionesUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoLenguajesByIdUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.SaveTritianosUseCase;
+import com.service3it.mscv_tritianos.domain.ports.in.UpdateTritianoByIdUseCase;
 import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.TritianosDTO;
 
 import jakarta.persistence.EntityNotFoundException;
@@ -28,8 +35,8 @@ import java.util.Arrays;
 import java.util.List;
 
 @WebMvcTest(TritianosController.class)
-@Import(tritianosControllerTest.MockConfig.class)
-public class tritianosControllerTest {
+@Import(TritianosControllerTest.MockConfig.class)
+public class TritianosControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -54,35 +61,55 @@ public class tritianosControllerTest {
 
     @TestConfiguration
     static class MockConfig {
-        @Bean GetAllTritianosUseCase getAlltritianos() {
+        @Bean
+        GetAllTritianosUseCase getAllTritianos() {
             return Mockito.mock(GetAllTritianosUseCase.class);
         }
 
-        @Bean GetTritianosByIdUseCase gettritianosById() {
+        @Bean
+        GetTritianosByIdUseCase getTritianosById() {
             return Mockito.mock(GetTritianosByIdUseCase.class);
         }
 
-        @Bean SaveTritianosUseCase savetritianos() {
+        @Bean
+        SaveTritianosUseCase saveTritianos() {
             return Mockito.mock(SaveTritianosUseCase.class);
         }
 
-        @Bean DeleteTritianoByIdUseCase deletetritianoById() {
+        @Bean
+        DeleteTritianoByIdUseCase deleteTritianoById() {
             return Mockito.mock(DeleteTritianoByIdUseCase.class);
         }
 
-        @Bean UpdateTritianoByIdUseCase updatetritianoById() {
+        @Bean
+        UpdateTritianoByIdUseCase updateTritianoById() {
             return Mockito.mock(UpdateTritianoByIdUseCase.class);
+        }
+
+        @Bean
+        GetTritianosWithTritianoAplicacionesUseCase getTritianosWithTritianoAplicacionesUseCase() {
+            return Mockito.mock(GetTritianosWithTritianoAplicacionesUseCase.class);
+        }
+
+        @Bean
+        GetTritianosWithTritianoAplicacionByIdUseCase getTritianosWithTritianoAplicacionesByIdUseCase() {
+            return Mockito.mock(GetTritianosWithTritianoAplicacionByIdUseCase.class);
+        }
+
+        @Bean
+        GetTritianosWithTritianoLenguajesByIdUseCase getTritianosWithTritianoLenguajesByIdUseCase() {
+            return Mockito.mock(GetTritianosWithTritianoLenguajesByIdUseCase.class);
         }
     }
 
     @Test
     void shouldReturnAllTritianos() throws Exception {
 
-        List<Tritianos> trinitariosList = Arrays.asList(
+        List<Tritianos> tritianosList = Arrays.asList(
             new Tritianos(1L, "Juan", "Perez", "juan.perez@example.com", "12345678-9", "+12345678901", "Activo", "https://bizneo.com/juan", "https://hubspot.com/juan", "https://jira.com/juan", null, null),
             new Tritianos(2L, "Maria", "Gomez", "maria.gomez@example.com", "87654321-K", "+12345678902", "Inactivo", "https://bizneo.com/maria", "https://hubspot.com/maria", "https://jira.com/maria", null, null)
         );
-        when(getAllTritianos.getAllTritianos()).thenReturn(trinitariosList);
+        when(getAllTritianos.getAllTritianos()).thenReturn(tritianosList);
 
         mockMvc.perform(get("/api/tritianos"))
             .andExpect(status().isOk())
