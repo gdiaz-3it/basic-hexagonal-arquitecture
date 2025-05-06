@@ -30,18 +30,9 @@ public class TritianosAplicacionesController {
 
     //Endpoint Clientes
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<Iterable<TritianosAplicacionesEntity>> findAll() {
         return ResponseEntity.ok(tritianosAplicacionesService.findAll());
-    }
-
-    @GetMapping("/{nivel}")
-    public ResponseEntity<List<TritianosAplicacionesEntity>> findByNivel(@PathVariable String nivel) {
-        List<TritianosAplicacionesEntity> tritianosAplicacion = tritianosAplicacionesService.findByNivel(nivel);
-        if (tritianosAplicacion.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
-        }
-        return ResponseEntity.ok(tritianosAplicacion);
     }
 
     @PostMapping

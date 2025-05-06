@@ -20,13 +20,6 @@ public class FeignTritianosLenguajesAdapter implements TritianosLenguajesReposit
     }
 
     @Override
-    public List<TritianosLenguajes> findLenguajesByRut(String rut) {
-        return tritianosLenguajesClient.getTritianosByRut(rut).stream()
-                .map(TritianosLenguajesMapper::toDomain)
-                .collect(Collectors.toList());
-    }
-
-    @Override
     public List<TritianosLenguajes> findLenguajesById(Long id) {
         return tritianosLenguajesClient.getTritianosById(id).stream()
                 .map(TritianosLenguajesMapper::toDomain)

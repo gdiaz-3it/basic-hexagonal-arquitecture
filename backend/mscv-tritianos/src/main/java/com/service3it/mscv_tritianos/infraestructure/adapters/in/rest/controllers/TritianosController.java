@@ -32,7 +32,6 @@ public class TritianosController {
     private final GetTritianosByIdUseCase gettritianosById;
     private final SaveTritianosUseCase savetritianos;
     private final UpdateTritianoByIdUseCase updatetritianoById;
-    private final GetTritianosWithTritianoAplicacionesUseCase gettritianosWithtritianoAplicacionesUseCase;
     private final GetTritianosWithTritianoAplicacionByIdUseCase gettritianosWithtritianoAplicacionesByIdUseCase;
     private final GetTritianosWithTritianoLenguajesByIdUseCase gettritianosWithtritianoLenguajesByIdUseCase;
     
@@ -94,22 +93,12 @@ public class TritianosController {
         }
     }
 
+    // Endpoint a microservicios clientes
+
     @GetMapping("/aplicaciones/{id}")
     public ResponseEntity<List<TritianosConTritianoAplicacionesDTO>> getTritianosWithTritianoAplicacionesById(@PathVariable Long id) {
             List<TritianosConTritianosAplicaciones> domainList = 
             gettritianosWithtritianoAplicacionesByIdUseCase.getTritianosWithTritianoAplicacionesUseCaseById(id);
-
-            List<TritianosConTritianoAplicacionesDTO> dtoList = domainList.stream()
-                .map(TritianosConTritianosAplicacionesDtoToDomainMapper::toDto)
-                .collect(Collectors.toList());
-
-            return ResponseEntity.ok(dtoList);
-    }
-
-    @GetMapping("/aplicaciones/rut")
-    public ResponseEntity<List<TritianosConTritianoAplicacionesDTO>> getTritianosWithTritianoAplicaciones() {
-            List<TritianosConTritianosAplicaciones> domainList = 
-                gettritianosWithtritianoAplicacionesUseCase.getTritianosWithTritianoAplicacionesUseCase();
 
             List<TritianosConTritianoAplicacionesDTO> dtoList = domainList.stream()
                 .map(TritianosConTritianosAplicacionesDtoToDomainMapper::toDto)

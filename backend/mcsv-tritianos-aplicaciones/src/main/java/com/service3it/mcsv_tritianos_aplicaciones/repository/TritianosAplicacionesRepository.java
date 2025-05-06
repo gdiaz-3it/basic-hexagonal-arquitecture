@@ -9,8 +9,6 @@ import com.service3it.mcsv_tritianos_aplicaciones.model.TritianosAplicacionesEnt
 
 public interface TritianosAplicacionesRepository extends JpaRepository<TritianosAplicacionesEntity, Long> {
 
-    List<TritianosAplicacionesEntity> findByNivel(String nivel);
-
     List<TritianosAplicacionesEntity> findByClienteId(Long clienteId);
 
 }

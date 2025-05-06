@@ -11,9 +11,6 @@ import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.Tritia
 @FeignClient(name = "mcsv-tritianos-aplicaciones", url = "http://localhost:8085")
 public interface TritianosAplicacionesClient {
 
-    @GetMapping("/api/tritianos-aplicaciones/cliente/rut/{rut}")
-    List<TritianosAplicacionesDto> getTritianosByRut(@PathVariable String rut);
-
     @GetMapping("/api/tritianos-aplicaciones/cliente/id/{id}")
     List<TritianosAplicacionesDto> getTritianosById(@PathVariable Long id);
     

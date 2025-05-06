@@ -19,13 +19,6 @@ public class FeignTritianosAplicacionesAdapter implements TritianosAplicacionesR
         this.tritianosAplicacionesClient = tritianosAplicacionesClient;
     }
 
-    @Override
-    public  List<TritianosAplicaciones> findAplicacionesByRut(String rut) {
-        return tritianosAplicacionesClient.getTritianosByRut(rut).stream()
-                .map(TritianosAplicacionesMapper::toDomain)
-                .collect(Collectors.toList());    
-    }
-
     public List<TritianosAplicaciones> findAplicacionesById(Long id) {
         return tritianosAplicacionesClient.getTritianosById(id).stream()
                 .map(TritianosAplicacionesMapper::toDomain)

@@ -9,8 +9,6 @@ public interface TritianosAplicacionesService {
 
     Iterable<TritianosAplicacionesEntity> findAll();
 
-    List<TritianosAplicacionesEntity> findByNivel(String nivel);
-
     TritianosAplicacionesEntity save(TritianosAplicacionesEntity tritianosAplicacionesEntity);
 
     List<TritianosAplicacionesEntity> getAplicacionesByClienteId(Long clienteId);

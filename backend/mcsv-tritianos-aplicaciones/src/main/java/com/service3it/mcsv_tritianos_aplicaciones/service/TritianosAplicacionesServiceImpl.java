@@ -27,15 +27,6 @@ public class TritianosAplicacionesServiceImpl implements TritianosAplicacionesSe
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public List<TritianosAplicacionesEntity> findByNivel(String nivel) {
-        if (nivel == null || nivel.trim().isEmpty()) {
-            throw new IllegalArgumentException("El nivel no puede ser nulo o vacío");
-        }
-        return tritianosAplicacionesRepository.findByNivel(nivel);
-    }
-
-    @Override
     @Transactional
     public TritianosAplicacionesEntity save(TritianosAplicacionesEntity tritianosAplicacionesEntity) {
         return tritianosAplicacionesRepository.save(tritianosAplicacionesEntity);

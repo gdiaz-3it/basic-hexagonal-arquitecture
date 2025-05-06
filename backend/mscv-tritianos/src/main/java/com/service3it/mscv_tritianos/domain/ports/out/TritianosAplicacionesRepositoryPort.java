@@ -6,8 +6,6 @@ import com.service3it.mscv_tritianos.domain.models.TritianosAplicaciones;
 
 public interface TritianosAplicacionesRepositoryPort {
 
-    List<TritianosAplicaciones> findAplicacionesByRut(String rut);
-
     List<TritianosAplicaciones> findAplicacionesById(Long id);
 
 }

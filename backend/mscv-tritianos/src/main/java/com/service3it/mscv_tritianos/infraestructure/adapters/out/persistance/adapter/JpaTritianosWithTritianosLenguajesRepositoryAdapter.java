@@ -24,18 +24,6 @@ public class JpaTritianosWithTritianosLenguajesRepositoryAdapter implements Trit
     }
 
     @Override
-    public List<TritianosConTritianosLenguajes> getTritianosWithTritianoLenguajesUseCase() {
-        return tritianosRepositoryPort.getAllTritianos().stream()
-            .map(tritiano -> {
-                List<TritianosLenguajes> lenguajes = 
-                    tritianosLenguajesRepositoryPort.findLenguajesByRut(tritiano.getRut());
-
-                return TritianosWithTritianosLenguajesMapper.map(tritiano, lenguajes);
-            })
-            .collect(Collectors.toList()); 
-    }
-
-    @Override
     public List<TritianosConTritianosLenguajes> getTritianosWithTritianoLenguajesUseCaseById(Long id) {
         return tritianosRepositoryPort.getAllTritianos().stream()
             .map(tritiano -> {

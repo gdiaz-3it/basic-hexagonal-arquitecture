@@ -6,8 +6,6 @@ import com.service3it.mscv_tritianos.domain.models.TritianosConTritianosAplicaci
 
 public interface TritianosConTritianosAplicacionesRepositoryPort {
 
-    List<TritianosConTritianosAplicaciones> getTritianosWithTritianoAplicacionesUseCase();
-
     List<TritianosConTritianosAplicaciones> getTritianosWithTritianoAplicacionesUseCaseById(Long id);
 
 }

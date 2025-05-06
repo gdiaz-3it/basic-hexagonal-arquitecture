@@ -6,8 +6,6 @@ import com.service3it.mscv_tritianos.domain.models.TritianosConTritianosLenguaje
 
 public interface TritianosConTritianosLenguajesRepositoryPort {
 
-    List<TritianosConTritianosLenguajes> getTritianosWithTritianoLenguajesUseCase();
-
     List<TritianosConTritianosLenguajes> getTritianosWithTritianoLenguajesUseCaseById(Long id);
 
 }

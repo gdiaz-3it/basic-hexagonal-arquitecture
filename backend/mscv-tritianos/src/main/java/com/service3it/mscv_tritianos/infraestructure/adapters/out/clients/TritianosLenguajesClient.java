@@ -11,9 +11,6 @@ import com.service3it.mscv_tritianos.infraestructure.adapters.in.rest.dto.Tritia
 @FeignClient(name = "mcsv-tritianos-lenguajes", url = "http://localhost:8083")
 public interface TritianosLenguajesClient {
 
-    @GetMapping("/api/tritianos-lenguajes/cliente/{rut}")
-    List<TritianosLenguajesDto> getTritianosByRut(@PathVariable String rut);
-
     @GetMapping("/api/tritianos-lenguajes/cliente/id/{id}")
     List<TritianosLenguajesDto> getTritianosById(@PathVariable Long id);
 

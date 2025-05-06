@@ -12,7 +12,6 @@ import com.service3it.mscv_tritianos.domain.ports.in.DeleteTritianoByIdUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.GetAllTritianosUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosByIdUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoAplicacionByIdUseCase;
-import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoAplicacionesUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.GetTritianosWithTritianoLenguajesByIdUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.SaveTritianosUseCase;
 import com.service3it.mscv_tritianos.domain.ports.in.UpdateTritianoByIdUseCase;
@@ -84,11 +83,6 @@ public class TritianosControllerTest {
         @Bean
         UpdateTritianoByIdUseCase updateTritianoById() {
             return Mockito.mock(UpdateTritianoByIdUseCase.class);
-        }
-
-        @Bean
-        GetTritianosWithTritianoAplicacionesUseCase getTritianosWithTritianoAplicacionesUseCase() {
-            return Mockito.mock(GetTritianosWithTritianoAplicacionesUseCase.class);
         }
 
         @Bean
