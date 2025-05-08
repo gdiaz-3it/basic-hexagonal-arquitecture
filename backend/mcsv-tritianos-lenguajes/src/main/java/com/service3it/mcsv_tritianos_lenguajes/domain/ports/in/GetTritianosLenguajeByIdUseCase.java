@@ -6,6 +6,4 @@ public interface GetTritianosLenguajeByIdUseCase {
 
     TritianosLenguaje getTritianosLenguajeById(Long id);
 
-    
-
 }
